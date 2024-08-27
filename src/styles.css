@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* colors */
+    --color-purple: #7c5dfa;
+    --color-purple-light: #9277ff;
+    --color-dark-blue: #1e2139;
+    --color-dark-blue-light: #252945;
+    --color-light-blue-lighter: #DFE3FA;
+    --color-light-blue: #888EB0;
+    --color-light-blue-darker: #7E88C3;
+    --color-black-shade: #0C0E16;
+    --color-dark-blue-dark: #141625;
+    --color-white-shade: #F8F8FB; /*(Light BG) */
+    --color-red-lighter: #9277FF;
+    --color-red: #EC5757;
+
+    /* FONTS */
+    --font-size-h1: 32px;
+    --font-size-h2: 20px;
+    --font-size-h3: 16px;
+    --font-size-h3-small: 14px;
+    --font-size-body: 12px;
+    --font-size-body-smaller: 11px;
+
+}
+
+body {
+    width: 100%;
+    height: 100dvh;
+
+}
+
+app-root {
+    width: 70%;
+    height: 100%;
+    background: red;
+}
