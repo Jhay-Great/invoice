@@ -10,7 +10,7 @@ export const loadData = '[LOAD_DATA_FUNCTIONALITY] loads initial invoice data';
 export const loadDataAction = createAction(loadData);
 export const loadDataSuccess = createAction(
   '[Data] Load Data Success',
-  props<{ data: LoadData }>()
+  props<{ data: LoadData[] }>()
 );
 export const loadDataFailure = createAction(
   '[Data] Load Data Failure',
@@ -23,9 +23,6 @@ export type dataLoadingActions =
   | ReturnType<typeof loadDataSuccess>
   | ReturnType<typeof loadDataFailure>;
 
-  
-
-  
 /**Action
  * this is a function which is used to trigger an event.
  * actions are use by reducers to perform an action or function

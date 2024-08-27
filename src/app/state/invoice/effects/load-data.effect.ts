@@ -14,7 +14,9 @@ export class LoadDataEffect {
         ofType(loadData),
         mergeMap(
             () => this.invoiceService.fetchInvoiceData().pipe(
-                map( data => loadDataSuccess({data})),
+                map( data => {
+                    // console.log(data);
+                    return loadDataSuccess({data})}),
                 catchError(error => of(loadDataFailure({error})))
             )
         )
