@@ -1,4 +1,7 @@
-import { createAction } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
+
+// local imports
+import { LoadData } from "../../../interfaces/loadData.interface";
 
 
 // defining action type
@@ -8,6 +11,12 @@ export const loadData = '[LOAD_DATA_FUNCTIONALITY] loads initial invoice data'
 export const loadDataAction = createAction(
     loadData,
 )
+export const loadDataSuccess = createAction('[Data] Load Data Success', props<{ data: LoadData }>());
+export const loadDataFailure = createAction('[Data] Load Data Failure', props<{ error: string }>());
+
+
+
+
 
 /**Action
  * this is a function which is used to trigger an event.
