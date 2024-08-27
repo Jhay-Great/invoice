@@ -6,6 +6,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { LoadDataEffect } from './state/invoice/effects/load-data.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
     ),
-    provideEffects(),
+    provideEffects(
+      LoadDataEffect
+    ),
     provideStore(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
