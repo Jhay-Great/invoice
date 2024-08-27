@@ -1,39 +1,61 @@
 <!-- header -->
-<header>
-    <section class="page-title">
-        <h1 class="title">Invoice</h1>
-        <p class="status">
-            There are 7 total invoices
-        </p>
-    </section>
+@if (isEmpty) {
+    <div class="empty-container">
+        <!-- img -->
+        <img src="../../../assets/svgs/illustration-empty.svg" alt="illustration depicting an empty invoice collection is empty">
+        
+        <article>
+            <!-- title -->
+            <h2 class="page-title">
+                There is nothing here
+            </h2>
+            <!-- description -->
+            <p class="page-description">
+                Create an invoice by clicking the <strong>New</strong> button and get started
+            </p>
 
-    <section class="filter">
-        <p>Filter by status</p>
-        <!-- svg -->
-        <img src="../../../assets/svgs/icon-arrow-down.svg" alt="down arrow svg icon on filter dropdown">
-    </section>
-
-    <!-- create a new invoice -->
-    <section class="new-invoice">
-        <!-- svg -->
-        <p>New Invoice</p>
-    </section>
-    
-</header>
-
-<!-- content -->
-<main>
-    <div class="invoice">
-        <!-- id -->
-        <p class="id"></p>
-        <!-- date -->
-        <p class="date"></p>
-        <!-- name -->
-        <p class="name"></p>
-        <!-- price -->
-        <p class="price"></p>
-        <!-- status -->
-        <p class="status"></p>
+        </article>
     </div>
+    
+}@else {
+    <header>
+        <section class="page-title">
+            <h1 class="title">Invoice</h1>
+            <p class="status">
+                There are 7 total invoices
+            </p>
+        </section>
+    
+        <section class="filter">
+            <!-- would need to display this dynamically for different viewport -->
+            <p>Filter</p>
+            <!-- svg -->
+            <img src="../../../assets/svgs/icon-arrow-down.svg" alt="down arrow svg icon on filter dropdown">
+        </section>
+    
+        <!-- create a new invoice -->
+        <section class="new-invoice">
+            <!-- svg -->
+            <p>New Invoice</p>
+        </section>
+        
+    </header>
+    
+    <!-- content -->
+    <main>
+        <div class="invoice">
+            <!-- id -->
+            <p class="id"></p>
+            <!-- date -->
+            <p class="date"></p>
+            <!-- name -->
+            <p class="name"></p>
+            <!-- price -->
+            <p class="price"></p>
+            <!-- status -->
+            <p class="status"></p>
+        </div>
+    
+    </main>
 
-</main>
+}

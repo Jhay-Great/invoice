@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './invoice-page.component.css'
 })
 export class InvoicePageComponent {
-
+  isEmpty:boolean = true;
 }

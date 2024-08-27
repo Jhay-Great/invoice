@@ -1,0 +1,10 @@
+app-app-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #373B53;
+}
+
+router-outlet {
+    display: none;
+}
