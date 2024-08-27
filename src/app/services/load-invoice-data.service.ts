@@ -1,9 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+// local imports
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadInvoiceDataService {
 
-  constructor() { }
+  dataUrl = '../../assets/data.json';
+
+  constructor(
+    private HttpClient: HttpClient,
+  ) { }
+
+  fetchInvoiceData () {
+    
+  }
 }
