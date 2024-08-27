@@ -16,6 +16,6 @@ export class LoadInvoiceDataService {
   ) { }
 
   fetchInvoiceData () {
-    return this.HttpClient.get<LoadData>(`${this.dataUrl}`);
+    return this.HttpClient.get<LoadData[]>(`${this.dataUrl}`);
   }
 }
