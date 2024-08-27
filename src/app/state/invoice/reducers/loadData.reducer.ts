@@ -3,8 +3,8 @@ import { Action, createReducer, on } from '@ngrx/store';
 // local import
 import {
   onLoadDataAction,
-  // loadDataFailure,
-  // loadDataSuccess,
+  loadDataOnSuccess,
+  loadDataOnFailure,
   // dataLoadingActions,
 } from '../actions/loadData.action';
 import { LoadData } from '../../../interfaces/loadData.interface';
@@ -15,30 +15,31 @@ export interface LoadingState {
   error: string;
 }
 
-const initialState = {
+const initialState:LoadingState = {
   data: [],
   loading: true,
   error: '',
 };
 
-export const _loadDataReducer = createReducer(
+export const loadDataReducer = createReducer(
   initialState,
   on(onLoadDataAction, (state) => ({
     ...state,
   })),
-    // on(loadDataSuccess, (state, { data }) => {
-    //   console.log(data);
-    //   return {
-    //     ...state,
-    //     data:data
-    //   }
-    // }),
-    // on(loadDataFailure, (state, { error }) => ({
-    //   ...state,
-    //   // data: [],
-    //   loading: false,
-    //   error: error,
-    // }))
+    on(loadDataOnSuccess, (state, { data }) => {
+      console.log(data);
+      return {
+        ...state,
+        data:data,
+        loading: false,
+      }
+    }),
+    on(loadDataOnFailure, (state, { error }) => ({
+      ...state,
+      data: [],
+      loading: false,
+      error: error,
+    }))
 );
 
 // export const loadDataReducer = function (
