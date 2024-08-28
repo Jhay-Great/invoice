@@ -17,9 +17,11 @@ import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice
   styleUrl: './invoice-page.component.css'
 })
 export class InvoicePageComponent implements OnInit {
-  isEmpty:boolean = true;
+  isEmpty:boolean = false;
   data = this.store.select(selectLoadInvoice);
   state = this.store.select(selectLoadState);
+  filterOptions = {paid: false, pending: false, draft: false};
+
   
   constructor (
     private store: Store<AppState>,
@@ -30,14 +32,14 @@ export class InvoicePageComponent implements OnInit {
   
   ngOnInit(): void {
     this.store.dispatch(onLoadDataAction())
-    // this.store.dispatch(filterInvoice({filterCriteria: 'paid'}))
-    // this.store.dispatch(filterInvoiceByDraft({ filterCriteria: 'draft'}));
-
-    // this.store.select(selectFilterFeature)
+    
     
   }
 
-  filterOptions = {paid: false, pending: false, draft: false};
+  displayDropDownMenu () {
+    console.log('click')
+    this.isEmpty = !this.isEmpty;
+  }
 
   filterInvoiceData (event:MouseEvent) {
     // return;
@@ -48,61 +50,9 @@ export class InvoicePageComponent implements OnInit {
     this.filterOptions = {
       ...this.filterOptions,
       [name]: isChecked,
-    }
-    // console.log(this.filterOptions);
-
-    const selectedName = 
+    };
 
     this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
-
-  }
-
-  // usingTemplateRef (event: any) {
-  //   console.log('from tempRef: ', event);
-  // }
-
-  filterByDraft (HTMLElement: HTMLElement) {
-    return;
-    const target = HTMLElement as HTMLInputElement
-    const name = target.name;
-    const isChecked = target.checked;
-    const data = {
-      [name]: isChecked,
-    }
-    console.log(name, data);
-    
-    if (target.checked) {
-        this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
-    } else {
-      this.store.dispatch(filterInvoice({filterCriteria: this.filterOptions}))
-    }
-    
-
-  }
-  filterByPaid (HTMLElement: HTMLElement) {
-    return;
-    const target = HTMLElement as HTMLInputElement
-    const name = target.name;
-    
-    if (target.checked) {
-        this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
-    } else {
-      this.store.dispatch(filterInvoice({filterCriteria: this.filterOptions}))
-    }
-    
-
-  }
-  filterByPending (HTMLElement: HTMLElement) {
-    return;
-    const target = HTMLElement as HTMLInputElement
-    const name = target.name;
-    
-    if (target.checked) {
-        this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
-    } else {
-      this.store.dispatch(filterInvoice({filterCriteria: this.filterOptions}))
-    }
-    
 
   }
   

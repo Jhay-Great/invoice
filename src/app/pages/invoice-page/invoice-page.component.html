@@ -8,7 +8,7 @@
             </p>
         </section>
     
-        <section class="filter">
+        <section class="filter" (click)="displayDropDownMenu()" >
             <!-- would need to display this dynamically for different viewport -->
             <p>Filter</p>
             <!-- svg -->
@@ -16,20 +16,23 @@
         </section>
 
         <!-- filter dropdown -->
-        <section class="filter-dropdown-menu" (click)="filterInvoiceData($event)" #InputParentContainer>
-            <div class="draft" (click)="filterByDraft(draftCheckBox)">
-                <input type="checkbox" name="draft" id="draft-checkbox" #draftCheckBox>
-                <label for="draft-checkbox">draft</label>
-            </div>
-            <div class="pending" (click)="filterByPending(pendingCheckBox)">
-                <input type="checkbox" name="pending" id="pending-checkbox" #pendingCheckBox>
-                <label for="pending-checkbox">pending</label>
-            </div>
-            <div class="paid" (click)="filterByPaid(paidCheckBox)">
-                <input type="checkbox" name="paid" id="paid-checkbox" #paidCheckBox>
-                <label for="paid-checkbox">paid</label>
-            </div>
-        </section>
+        @if (isEmpty) {
+            <section class="filter-dropdown-menu" (click)="filterInvoiceData($event)" #InputParentContainer>
+                <div class="draft" >
+                    <input type="checkbox" name="draft" id="draft-checkbox" #draftCheckBox>
+                    <label for="draft-checkbox">draft</label>
+                </div>
+                <div class="pending">
+                    <input type="checkbox" name="pending" id="pending-checkbox" #pendingCheckBox>
+                    <label for="pending-checkbox">pending</label>
+                </div>
+                <div class="paid">
+                    <input type="checkbox" name="paid" id="paid-checkbox" #paidCheckBox>
+                    <label for="paid-checkbox">paid</label>
+                </div>
+            </section>
+            
+        }
     
         <!-- create a new invoice -->
         <section class="new-invoice">
