@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../interfaces/AppState.interface';
 import { selectInvoice } from '../../state/invoice/selectors/loadData.selector';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-invoice-detail-page',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule, RouterLink, ],
   templateUrl: './invoice-detail-page.component.html',
   styleUrl: './invoice-detail-page.component.css'
 })
