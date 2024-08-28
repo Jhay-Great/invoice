@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
 
-import { AppState, InvoiceFeature } from "../../../interfaces/AppState.interface";
+import { AppState } from "../../../interfaces/AppState.interface";
 import { InvoiceState } from "../reducers/loadData.reducer";
 
 const loadInvoiceFeature = (state:AppState) => state.invoice;
@@ -8,7 +8,7 @@ const loadInvoiceFeature = (state:AppState) => state.invoice;
 export const selectLoadInvoice = createSelector(
     loadInvoiceFeature,
     (invoiceFeature: InvoiceState) => {
-        return invoiceFeature.data
+        return invoiceFeature.filteredData; // selector now selects the filtered data by default
     }
     
 );

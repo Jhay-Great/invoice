@@ -6,6 +6,6 @@ export interface AppState {
     // theme:
 }
 
-export interface InvoiceFeature {
-    dataLoadingFeature: InvoiceState,
-}
+// export interface InvoiceFeature {
+//     dataLoadingFeature: InvoiceState,
+// }

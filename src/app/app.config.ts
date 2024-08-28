@@ -19,9 +19,11 @@ export const appConfig: ApplicationConfig = {
       LoadDataEffect
     ),
     provideStore(),
-    provideState({
+    provideState(
+      {
       name: 'invoice', reducer: loadDataReducer
-    }),
+    },
+  ),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

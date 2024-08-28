@@ -16,17 +16,17 @@
         </section>
 
         <!-- filter dropdown -->
-        <section class="filter-dropdown-menu">
-            <div class="draft">
-                <input type="checkbox" name="draft" id="draft-checkbox">
+        <section class="filter-dropdown-menu" (click)="filterInvoiceData($event)" #InputParentContainer>
+            <div class="draft" (click)="filterByDraft(draftCheckBox)">
+                <input type="checkbox" name="draft" id="draft-checkbox" #draftCheckBox>
                 <label for="draft-checkbox">draft</label>
             </div>
-            <div class="pending">
-                <input type="checkbox" name="pending" id="pending-checkbox">
+            <div class="pending" (click)="filterByPending(pendingCheckBox)">
+                <input type="checkbox" name="pending" id="pending-checkbox" #pendingCheckBox>
                 <label for="pending-checkbox">pending</label>
             </div>
-            <div class="paid">
-                <input type="checkbox" name="paid" id="paid-checkbox">
+            <div class="paid" (click)="filterByPaid(paidCheckBox)">
+                <input type="checkbox" name="paid" id="paid-checkbox" #paidCheckBox>
                 <label for="paid-checkbox">paid</label>
             </div>
         </section>

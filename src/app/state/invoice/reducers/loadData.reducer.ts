@@ -8,15 +8,20 @@ import {
   // dataLoadingActions,
 } from '../actions/loadData.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
+import { filterInvoice } from '../actions/filterInvoice.action';
 
 export interface InvoiceState {
   data: LoadDataInterface[];
+  filteredData: LoadDataInterface[];
+  filterCriteria: string;
   loading: boolean;
   error: string;
 }
 
 const initialState:InvoiceState = {
   data: [],
+  filteredData: [],
+  filterCriteria: '',
   loading: false,
   error: '',
 };
@@ -30,17 +35,44 @@ export const loadDataReducer = createReducer(
       // console.log(data);
       return {
         ...state,
-        data:data,
+        data: data,
+        filteredData: data,
         loading: true,
       }
     }),
     on(loadDataOnFailure, (state, { error }) => ({
       ...state,
-      data: [],
-      loading: false,
       error: error,
-    }))
+    })),
+    on(filterInvoice, (state, {filterCriteria}) => {
+      const data = state.filteredData.filter(item => item.status === filterCriteria);
+      console.log(data, filterCriteria)
+      return {
+        ...state,
+        filteredData: data,
+        filterCriteria,
+      }
+    })
 );
+
+// state.list.filter(invoice =>
+//   invoice.description.includes(state.filterCriteria) // Example filtering logic
+// )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // export const loadDataReducer = function (
 //   state: InvoiceInterface,
