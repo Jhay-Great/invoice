@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { LoadData } from "../../../interfaces/loadData.interface";
+import { LoadDataInterface } from "../../../interfaces/loadData.interface";
 
 
 // defining action type
@@ -11,7 +11,7 @@ export const FAILURE = '[Load Invoice] Failed to load data'
 export const onLoadDataAction = createAction(LOAD_INVOICE_DATA);
 export const loadDataOnSuccess = createAction(
     SUCCESS,
-    props<{data: LoadData[]}>()
+    props<{data: LoadDataInterface[]}>()
 )
 export const loadDataOnFailure = createAction(
     FAILURE,

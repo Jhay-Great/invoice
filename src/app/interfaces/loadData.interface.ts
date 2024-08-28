@@ -1,4 +1,4 @@
-export interface LoadData {
+export interface LoadDataInterface {
     id: string;
     createdAt: string;
     paymentDue: string;

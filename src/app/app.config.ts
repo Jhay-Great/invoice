@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideStore(),
     provideState({
-      name: 'load', reducer: loadDataReducer
+      name: 'invoice', reducer: loadDataReducer
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],

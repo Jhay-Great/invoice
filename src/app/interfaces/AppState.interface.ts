@@ -1,10 +1,11 @@
-import { LoadData } from "./loadData.interface"
+import { LoadDataInterface } from "./loadData.interface"
+import { LoadingState } from "../state/invoice/reducers/loadData.reducer"
 
 export interface AppState {
-    invoice: InvoiceFeature,
+    invoice: LoadingState,
     // theme:
 }
 
 export interface InvoiceFeature {
-    dataLoadingFeature: LoadData[],
+    dataLoadingFeature: LoadingState,
 }

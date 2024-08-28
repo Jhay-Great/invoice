@@ -1,5 +1,5 @@
 <!-- header -->
-@if (isEmpty) {
+@if ( state | async ) {
     <div class="empty-container">
         <!-- img -->
         <img src="../../../assets/svgs/illustration-empty.svg" alt="illustration depicting an empty invoice collection is empty">
@@ -43,18 +43,43 @@
     
     <!-- content -->
     <main>
-        <div class="invoice">
-            <!-- id -->
+        @for (invoice of data | async; track $index) {
+            <div class="invoice">
+                <!-- id -->
+                <p class="id">
+                    {{ invoice.id }}
+                </p>
+                <!-- date -->
+                <p class="date">
+                    {{ invoice.createdAt}}
+                </p>
+                <!-- name -->
+                <p class="name">
+                    {{ invoice.clientName }}
+                </p>
+                <!-- price -->
+                <p class="price">
+                    {{ invoice.paymentTerms}}
+                </p>
+                <!-- status -->
+                <p class="status">
+                    {{ invoice.status }}
+                </p>
+            </div>
+
+        }
+        <!-- <div class="invoice">
+            <!-- id --
             <p class="id"></p>
-            <!-- date -->
+            <!-- date --
             <p class="date"></p>
-            <!-- name -->
+            <!-- name --
             <p class="name"></p>
-            <!-- price -->
+            <!-- price --
             <p class="price"></p>
-            <!-- status -->
+            <!-- status --
             <p class="status"></p>
-        </div>
+        </div> -->
     
     </main>
 

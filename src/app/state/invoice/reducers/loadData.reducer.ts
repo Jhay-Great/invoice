@@ -7,10 +7,10 @@ import {
   loadDataOnFailure,
   // dataLoadingActions,
 } from '../actions/loadData.action';
-import { LoadData } from '../../../interfaces/loadData.interface';
+import { LoadDataInterface } from '../../../interfaces/loadData.interface';
 
 export interface LoadingState {
-  data: LoadData[];
+  data: LoadDataInterface[];
   loading: boolean;
   error: string;
 }
@@ -27,7 +27,7 @@ export const loadDataReducer = createReducer(
     ...state,
   })),
     on(loadDataOnSuccess, (state, { data }) => {
-      console.log(data);
+      // console.log(data);
       return {
         ...state,
         data:data,
