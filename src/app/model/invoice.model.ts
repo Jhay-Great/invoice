@@ -1,4 +1,5 @@
-export interface LoadDataInterface {
+
+export interface Invoice {
     id: string;
     createdAt: string;
     paymentDue: string;

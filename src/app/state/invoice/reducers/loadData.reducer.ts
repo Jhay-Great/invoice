@@ -2,106 +2,77 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 // local import
 import {
-  loadData,
-  loadDataAction,
-  loadDataFailure,
-  loadDataSuccess,
-  dataLoadingActions,
+  onLoadDataAction,
+  loadDataOnSuccess,
+  loadDataOnFailure,
+  // dataLoadingActions,
 } from '../actions/loadData.action';
-import { LoadData } from '../../../interfaces/loadData.interface';
+import { LoadDataInterface } from '../../../interfaces/loadData.interface';
+import { detailedInvoice, FilterCriteriaType, filterInvoice } from '../actions/filterInvoice.action';
 
-export interface LoadingState {
-  data: LoadData[];
+export interface InvoiceState {
+  data: LoadDataInterface[];
+  filteredData: LoadDataInterface[];
+  filterCriteria: FilterCriteriaType;
+  selectedInvoiceId: string;
+  // filterCriteria: string;
   loading: boolean;
   error: string;
 }
 
-const initialState = {
-  data: [
-    {
-      id: 'RT3080',
-      createdAt: '2021-08-18',
-      paymentDue: '2021-08-19',
-      description: 'Re-branding',
-      paymentTerms: 1,
-      clientName: 'Jensen Huang',
-      clientEmail: 'jensenh@mail.com',
-      status: 'paid',
-      senderAddress: {
-        street: '19 Union Terrace',
-        city: 'London',
-        postCode: 'E1 3EZ',
-        country: 'United Kingdom',
-      },
-      clientAddress: {
-        street: '106 Kendell Street',
-        city: 'Sharrington',
-        postCode: 'NR24 5WQ',
-        country: 'United Kingdom',
-      },
-      items: [
-        {
-          name: 'Brand Guidelines',
-          quantity: 1,
-          price: 1800.9,
-          total: 1800.9,
-        },
-      ],
-      total: 1800.9,
-    },
-  ],
-  loading: true,
+const initialState:InvoiceState = {
+  data: [],
+  filteredData: [],
+  filterCriteria: {paid: false, pending: false, draft: false},
+  selectedInvoiceId: '',
+  loading: false,
   error: '',
 };
 
-export const _loadDataReducer = createReducer(
+export const loadDataReducer = createReducer(
   initialState,
-  on(loadDataAction, (state) => ({
+  on(onLoadDataAction, (state) => ({
     ...state,
-    loading: true,
-    error: '',
   })),
-    on(loadDataSuccess, (state, { data }) => {
-      console.log(data);
+    on(loadDataOnSuccess, (state, { data }) => {
+      // console.log(data);
       return {
         ...state,
-        data:data
+        data: data,
+        filteredData: data,
+        loading: true,
       }
     }),
-    on(loadDataFailure, (state, { error }) => ({
+    on(loadDataOnFailure, (state, { error }) => ({
       ...state,
-      // data: [],
-      loading: false,
       error: error,
-    }))
+    })),
+    on(filterInvoice, (state, {filterCriteria}) => {
+      // console.log(filterCriteria)
+      return {
+        ...state,
+        filterCriteria,
+      }
+    }),
+    on(detailedInvoice, (state, {selectedInvoiceId}) => ({
+      ...state, 
+      selectedInvoiceId
+    })),
+    
 );
 
-// export const loadDataReducer = function (
-//   state: LoadingState,
-//   action: Action
-// ) {
-//   return _loadDataReducer(state, action);
-// };
 
-// export function loadDataReducer(
-//     state: LoadingState | undefined,
-//     action: Action
-//   ): LoadingState {
-//     return _loadDataReducer(state ?? initialState, action); // Handle undefined state
-//   }
 
-// export function reducers(state:counterType | undefined, action:counterActions): counterType {
-//     return _counterReducer(state, action)
-// }
 
-// export function numberCounterReducers(
-//     state: counterType | undefined,
-//     action: Action
-//   ): counterType {
-//     return _counterReducer(state, action as any);
-//   }
 
-/**Reducer
- * IMPORTANT: initial state,
- * IMPORTANT: state function on() to trigger the action
- */
+
+
+
+
+
+
+
+
+
+
+

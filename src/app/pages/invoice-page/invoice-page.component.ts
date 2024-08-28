@@ -1,32 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadData, loadDataAction, loadDataSuccess } from '../../state/invoice/actions/loadData.action';
-import { loadInvoice, selectLoadInvoice } from '../../state/invoice/selectors/loadData.selector';
-import { LoadingState } from '../../state/invoice/reducers/loadData.reducer';
-import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
+// local module imports
+import { selectLoadInvoice, selectLoadState } from '../../state/invoice/selectors/loadData.selector';
+import { onLoadDataAction } from '../../state/invoice/actions/loadData.action';
+import { AppState } from '../../interfaces/AppState.interface';
+import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
+import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
 
 @Component({
   selector: 'app-invoice-page',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ AsyncPipe, RouterLink],
   templateUrl: './invoice-page.component.html',
   styleUrl: './invoice-page.component.css'
 })
-export class InvoicePageComponent {
-  isEmpty:boolean = true;
-  // data = this.store.select(selectLoadInvoice)
-  // data = this.store.select(loadInvoice)
-  data!: Observable<any>
+export class InvoicePageComponent implements OnInit {
+  isEmpty:boolean = false;
+  data = this.store.select(selectLoadInvoice);
+  state = this.store.select(selectLoadState);
+  filterOptions = {paid: false, pending: false, draft: false};
 
+  
   constructor (
-    private store: Store<LoadingState>,
+    private store: Store<AppState>,
   ) {
-    this.store.dispatch(loadDataAction());
-    // const data = this.store.select(loadInvoice);
-    this.data.subscribe(val => console.log(val))
-
-    this.data = this.store.select(loadInvoice);
-    // console.log('hello')
+    // const data = this.store.select(selectLoadInvoice);
+    // console.log(data);
   }
+  
+  ngOnInit(): void {
+    this.store.dispatch(onLoadDataAction())
+    
+    
+  }
+
+  displayDropDownMenu () {
+    this.isEmpty = !this.isEmpty;
+  }
+
+  filterInvoiceData (event:MouseEvent) {
+    // return;
+    const target = event.target as HTMLInputElement;
+    const { name } = target;
+    const isChecked = target.checked;
+
+    this.filterOptions = {
+      ...this.filterOptions,
+      [name]: isChecked,
+    };
+
+    this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
+
+  }
+
+  handleSelectedInvoice (invoiceId:string) {
+
+    this.store.dispatch(detailedInvoice({selectedInvoiceId: invoiceId}))
+  }
+  
 }
