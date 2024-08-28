@@ -9,15 +9,15 @@ import {
 } from '../actions/loadData.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
 
-export interface LoadingState {
+export interface InvoiceState {
   data: LoadDataInterface[];
   loading: boolean;
   error: string;
 }
 
-const initialState:LoadingState = {
+const initialState:InvoiceState = {
   data: [],
-  loading: true,
+  loading: false,
   error: '',
 };
 
@@ -31,7 +31,7 @@ export const loadDataReducer = createReducer(
       return {
         ...state,
         data:data,
-        loading: false,
+        loading: true,
       }
     }),
     on(loadDataOnFailure, (state, { error }) => ({
@@ -43,16 +43,16 @@ export const loadDataReducer = createReducer(
 );
 
 // export const loadDataReducer = function (
-//   state: LoadingState,
+//   state: InvoiceInterface,
 //   action: Action
 // ) {
 //   return _loadDataReducer(state, action);
 // };
 
 // export function loadDataReducer(
-//     state: LoadingState | undefined,
+//     state: InvoiceInterface | undefined,
 //     action: Action
-//   ): LoadingState {
+//   ): InvoiceInterface {
 //     return _loadDataReducer(state ?? initialState, action); // Handle undefined state
 //   }
 
