@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 // local module imports
 import { selectLoadInvoice, selectLoadState } from '../../state/invoice/selectors/loadData.selector';
 import { onLoadDataAction } from '../../state/invoice/actions/loadData.action';
 import { AppState } from '../../interfaces/AppState.interface';
-import { filterInvoice, filterInvoiceByDraft } from '../../state/invoice/actions/filterInvoice.action';
+import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
 import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
 
 @Component({
   selector: 'app-invoice-page',
   standalone: true,
-  imports: [ AsyncPipe,],
+  imports: [ AsyncPipe, RouterLink],
   templateUrl: './invoice-page.component.html',
   styleUrl: './invoice-page.component.css'
 })
@@ -37,7 +38,6 @@ export class InvoicePageComponent implements OnInit {
   }
 
   displayDropDownMenu () {
-    console.log('click')
     this.isEmpty = !this.isEmpty;
   }
 
@@ -54,6 +54,11 @@ export class InvoicePageComponent implements OnInit {
 
     this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
 
+  }
+
+  handleSelectedInvoice (invoiceId:string) {
+
+    this.store.dispatch(detailedInvoice({selectedInvoiceId: invoiceId}))
   }
   
 }
