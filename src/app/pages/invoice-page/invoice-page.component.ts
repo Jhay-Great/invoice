@@ -30,5 +30,9 @@ export class InvoicePageComponent implements OnInit {
     this.store.dispatch(onLoadDataAction())
     
   }
+
+  filterInvoice () {
+
+  }
   
 }
