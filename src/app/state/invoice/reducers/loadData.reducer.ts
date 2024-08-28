@@ -8,12 +8,13 @@ import {
   // dataLoadingActions,
 } from '../actions/loadData.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
-import { FilterCriteriaType, filterInvoice } from '../actions/filterInvoice.action';
+import { detailedInvoice, FilterCriteriaType, filterInvoice } from '../actions/filterInvoice.action';
 
 export interface InvoiceState {
   data: LoadDataInterface[];
   filteredData: LoadDataInterface[];
   filterCriteria: FilterCriteriaType;
+  selectedInvoiceId: string;
   // filterCriteria: string;
   loading: boolean;
   error: string;
@@ -23,6 +24,7 @@ const initialState:InvoiceState = {
   data: [],
   filteredData: [],
   filterCriteria: {paid: false, pending: false, draft: false},
+  selectedInvoiceId: '',
   loading: false,
   error: '',
 };
@@ -51,7 +53,11 @@ export const loadDataReducer = createReducer(
         ...state,
         filterCriteria,
       }
-    })
+    }),
+    on(detailedInvoice, (state, {selectedInvoiceId}) => ({
+      ...state, 
+      selectedInvoiceId
+    })),
     
 );
 
