@@ -4,6 +4,12 @@ import { createAction, props } from "@ngrx/store";
 // create the action type
 // create the action creator
 
+export interface FilterCriteriaType {
+    pending: boolean,
+    paid: boolean,
+    draft: boolean,
+}
+
 const DRAFT = '[Filter] filters by draft';
 const PENDING = '[Filter] filters by pending';
 const PAID = '[Filter] filters by paid';
@@ -21,5 +27,5 @@ export const filterInvoiceByPaid = createAction(PAID);
 const FILTER = '[Filter] filtering invoice data'
 export const filterInvoice = createAction(
     FILTER,
-    props<{filterCriteria: string}>(),
+    props<{filterCriteria: FilterCriteriaType}>(),
 )

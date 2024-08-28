@@ -37,15 +37,23 @@ export class InvoicePageComponent implements OnInit {
     
   }
 
+  filterOptions = {paid: false, pending: false, draft: false};
+
   filterInvoiceData (event:MouseEvent) {
-    return;
+    // return;
     const target = event.target as HTMLInputElement;
     const { name } = target;
-    // console.log(name);
+    const isChecked = target.checked;
+
+    this.filterOptions = {
+      ...this.filterOptions,
+      [name]: isChecked,
+    }
+    // console.log(this.filterOptions);
 
     const selectedName = 
 
-    this.store.dispatch(filterInvoice({ filterCriteria: name}));
+    this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
 
   }
 
@@ -54,37 +62,45 @@ export class InvoicePageComponent implements OnInit {
   // }
 
   filterByDraft (HTMLElement: HTMLElement) {
+    return;
     const target = HTMLElement as HTMLInputElement
     const name = target.name;
+    const isChecked = target.checked;
+    const data = {
+      [name]: isChecked,
+    }
+    console.log(name, data);
     
     if (target.checked) {
-        this.store.dispatch(filterInvoice({ filterCriteria: name}));
+        this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
     } else {
-      this.store.dispatch(filterInvoice({filterCriteria: ''}))
+      this.store.dispatch(filterInvoice({filterCriteria: this.filterOptions}))
     }
     
 
   }
   filterByPaid (HTMLElement: HTMLElement) {
+    return;
     const target = HTMLElement as HTMLInputElement
     const name = target.name;
     
     if (target.checked) {
-        this.store.dispatch(filterInvoice({ filterCriteria: name}));
+        this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
     } else {
-      this.store.dispatch(filterInvoice({filterCriteria: ''}))
+      this.store.dispatch(filterInvoice({filterCriteria: this.filterOptions}))
     }
     
 
   }
   filterByPending (HTMLElement: HTMLElement) {
+    return;
     const target = HTMLElement as HTMLInputElement
     const name = target.name;
     
     if (target.checked) {
-        this.store.dispatch(filterInvoice({ filterCriteria: name}));
+        this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
     } else {
-      this.store.dispatch(filterInvoice({filterCriteria: ''}))
+      this.store.dispatch(filterInvoice({filterCriteria: this.filterOptions}))
     }
     
 
