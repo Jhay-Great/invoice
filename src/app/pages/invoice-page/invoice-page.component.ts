@@ -22,6 +22,7 @@ export class InvoicePageComponent implements OnInit {
   data = this.store.select(selectLoadInvoice);
   state = this.store.select(selectLoadState);
   filterOptions = {paid: false, pending: false, draft: false};
+  isFormActive:boolean = false;
 
   
   constructor (
@@ -59,6 +60,12 @@ export class InvoicePageComponent implements OnInit {
   handleSelectedInvoice (invoiceId:string) {
 
     this.store.dispatch(detailedInvoice({selectedInvoiceId: invoiceId}))
+  }
+
+  displayForm ():void {
+    // this.isFormActive = !this.isFormActive;
+    this.isFormActive = true;
+    console.log(this.isFormActive);
   }
   
 }

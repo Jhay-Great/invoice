@@ -18,3 +18,31 @@ article {
     text-align: center;
     width: 70%;
 }
+.new-invoice {
+    border-color: transparent;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline-start: .3rem;
+    padding-inline-end: 1rem;
+    height: 40px;
+    width: fit-content;
+    gap: 1rem;
+    background-color: var(--color-purple);
+}
+.svg-container {
+    width: 30px;
+    height: 30px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: transparent;
+    border-radius: 50%;
+}
+
+.new-invoice p {
+    color: white;
+    font-weight: 600;
+}
