@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel, FormsModule, Form, FormArray } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { v4 as uuid } from 'uuid';
+import { v4 as uuidV4 } from 'uuid';
 
 @Component({
   selector: 'app-invoice-form',
@@ -64,28 +64,19 @@ export class InvoiceFormComponent implements OnInit{
   }
 
   handleFormSubmission () {
-    console.log(this.form.value);
-    console.log(uuid())
+    
+    const uuid = uuidV4();
+    const id = uuid.slice(0, 6);
+    
+
+    const invoiceData = this.form.value;
+    const invoice = {
+      id,
+      ...invoiceData,
+    }
+    console.log(invoice);
+    
   }
 }
 
 
-
-/**reactive forms
- *   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      clientData: this.fb.group({
-        name: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]]
-      }),
-      senderData: this.fb.group({
-        address: ['', Validators.required],
-        phone: ['']
-      }),
-      priceData: this.fb.group({
-        amount: ['', [Validators.required, Validators.min(0)]],
-        currency: ['USD']
-      })
-    });
-  }
- */

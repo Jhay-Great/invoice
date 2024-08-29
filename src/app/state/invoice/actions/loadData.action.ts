@@ -18,6 +18,21 @@ export const loadDataOnFailure = createAction(
     props<{error: string}>()
 )
 
+export const addInvoice = createAction(
+    '[Invoice API] Add Invoice',
+    props<{ invoice: LoadDataInterface }>()
+  );
+  
+  export const updateInvoice = createAction(
+    '[Invoice API] Update Invoice',
+    props<{ invoice: LoadDataInterface }>()
+  );
+  
+  export const deleteInvoice = createAction(
+    '[Invoice API] Delete Invoice',
+    props<{ id: string }>()
+  );
+
 
 
 
