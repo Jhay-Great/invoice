@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { Ng }
 
 @Component({
   selector: 'app-invoice-form',
@@ -9,4 +10,7 @@ import { Component } from '@angular/core';
 })
 export class InvoiceFormComponent {
 
+  handleFormSubmission () {
+
+  }
 }
