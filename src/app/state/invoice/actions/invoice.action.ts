@@ -20,7 +20,12 @@ export const InvoiceAction = createActionGroup({
         'Selects a specific id': props<{selectedInvoiceId: string}>(),
 
         // CRUD operations
-
+        'Add Invoice': props<Invoice>(),
+        'Get Invoice': props<{id: string}>(),
+        'Update Invoice': props<{update: {id: string; changes: Partial<Invoice>}}>(),
+        'Delete Invoice': props<{id: string}>(),
+        // 'Update Invoice': props<Invoice>(),
+        // 'Update Book': props<{ update: { id: string; changes: Partial<Book> } }>(),
     }
 })
 
