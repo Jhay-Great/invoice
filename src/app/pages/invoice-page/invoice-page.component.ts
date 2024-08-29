@@ -8,7 +8,7 @@ import { selectLoadInvoice, selectLoadState } from '../../state/invoice/selector
 import { onLoadDataAction } from '../../state/invoice/actions/loadData.action';
 import { AppState } from '../../interfaces/AppState.interface';
 import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
-import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
+// import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
 
 @Component({
   selector: 'app-invoice-page',

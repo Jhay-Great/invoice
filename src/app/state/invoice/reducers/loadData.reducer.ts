@@ -11,27 +11,27 @@ import {
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
 import { detailedInvoice, FilterCriteriaType, filterInvoice } from '../actions/filterInvoice.action';
 
-export interface InvoiceState {
-  data: LoadDataInterface[];
-  filteredData: LoadDataInterface[];
-  filterCriteria: FilterCriteriaType;
-  selectedInvoiceId: string;
-  // filterCriteria: string;
-  loading: boolean;
-  error: string;
-}
+// export interface InvoiceState {
+//   data: LoadDataInterface[];
+//   filteredData: LoadDataInterface[];
+//   filterCriteria: FilterCriteriaType;
+//   selectedInvoiceId: string;
+//   // filterCriteria: string;
+//   loading: boolean;
+//   error: string;
+// }
 
-const initialState:InvoiceState = {
-  data: [],
-  filteredData: [],
-  filterCriteria: {paid: false, pending: false, draft: false},
-  selectedInvoiceId: '',
-  loading: false,
-  error: '',
-};
+// const initialState:InvoiceState = {
+//   data: [],
+//   filteredData: [],
+//   filterCriteria: {paid: false, pending: false, draft: false},
+//   selectedInvoiceId: '',
+//   loading: false,
+//   error: '',
+// };
 
 // defining or extending the entity state
-export interface InvoiceStates extends EntityState<LoadDataInterface> {
+export interface InvoiceState extends EntityState<LoadDataInterface> {
   filterCriteria: FilterCriteriaType,
   selectedInvoiceId: string,
   loading: boolean,
@@ -42,46 +42,69 @@ export interface InvoiceStates extends EntityState<LoadDataInterface> {
 export const invoiceAdapter: EntityAdapter<LoadDataInterface> = createEntityAdapter<LoadDataInterface>();
 
 // initialize or declare a new initial state
-export const initialInvoiceState: InvoiceStates = invoiceAdapter.getInitialState({
+export const initialInvoiceState: InvoiceState = invoiceAdapter.getInitialState({
     filterCriteria: {paid: false, pending: false, draft: false},  
     selectedInvoiceId: '',
     loading: false,
     error: '',
 })
 
-
-
 export const loadDataReducer = createReducer(
-  initialState,
-  on(onLoadDataAction, (state) => ({
-    ...state,
+  initialInvoiceState,
+  on(onLoadDataAction, (state) => ({...state})),
+  on(loadDataOnSuccess, (state, { data }) => invoiceAdapter.setAll(data, {...state})),
+  // on(loadDataOnSuccess, (state, { data }) => invoiceAdapter.setAll(data, {...state})),
+  on(loadDataOnFailure, (state, { error }) => ({ ...state, error })),
+  on(filterInvoice, (state, { filterCriteria }) => ({...state, filterCriteria})),
+  on(detailedInvoice, (state, {selectedInvoiceId}) => ({
+    ...state, 
+    selectedInvoiceId
   })),
-    on(loadDataOnSuccess, (state, { data }) => {
-      // console.log(data);
-      return {
-        ...state,
-        data: data,
-        filteredData: data,
-        loading: true,
-      }
-    }),
-    on(loadDataOnFailure, (state, { error }) => ({
-      ...state,
-      error: error,
-    })),
-    on(filterInvoice, (state, {filterCriteria}) => {
-      // console.log(filterCriteria)
-      return {
-        ...state,
-        filterCriteria,
-      }
-    }),
-    on(detailedInvoice, (state, {selectedInvoiceId}) => ({
-      ...state, 
-      selectedInvoiceId
-    })),
+)
+
+// export const _invoiceReducer = createReducer(
+//   initialInvoiceState,
+//   on(loadDataOnSuccess, (state, { data }) => 
+//     invoiceAdapter.setAll(data, {
+//       ...state,
+//       loading: false  // Set loading to false if you want to update it
+//     })
+//   )
+// );
+
+
+
+// export const loadDataReducer = createReducer(
+//   initialState,
+//   on(onLoadDataAction, (state) => ({
+//     ...state,
+//   })),
+//     on(loadDataOnSuccess, (state, { data }) => {
+//       // console.log(data);
+//       return {
+//         ...state,
+//         data: data,
+//         filteredData: data,
+//         loading: true,
+//       }
+//     }),
+//     on(loadDataOnFailure, (state, { error }) => ({
+//       ...state,
+//       error: error,
+//     })),
+//     on(filterInvoice, (state, {filterCriteria}) => {
+//       // console.log(filterCriteria)
+//       return {
+//         ...state,
+//         filterCriteria,
+//       }
+//     }),
+//     on(detailedInvoice, (state, {selectedInvoiceId}) => ({
+//       ...state, 
+//       selectedInvoiceId
+//     })),
     
-);
+// );
 
 
 
@@ -90,6 +113,59 @@ export const loadDataReducer = createReducer(
 
 
 
+// const loadInvoiceFeature = (state: AppState) => state.invoice;
+
+// const { selectIds, selectEntities, selectAll, selectTotal } = invoiceAdapter.getSelectors(selectInvoiceFeature);
+
+// const selectInvoiceFeature = (state: AppState) => state.invoice;
+
+// // Selector for the filter criteria
+// export const selectFilterCriteria = createSelector(
+//   selectInvoiceFeature,
+//   (state: InvoiceState) => state.filterCriteria
+// );
+
+// // Selector for the loading state
+// export const selectLoading = createSelector(
+//   selectInvoiceFeature,
+//   (state: InvoiceState) => state.loading
+// );
+
+// // Selector for the error state
+// export const selectError = createSelector(
+//   selectInvoiceFeature,
+//   (state: InvoiceState) => state.error
+// );
+
+// // Selector for the selected invoice ID
+// export const selectSelectedInvoiceId = createSelector(
+//   selectInvoiceFeature,
+//   (state: InvoiceState) => state.selectedInvoiceId
+// );
+
+// // Selector for the selected invoice entity
+// export const selectSelectedInvoice = createSelector(
+//   selectEntities,
+//   selectSelectedInvoiceId,
+//   (entities, selectedId) => selectedId ? entities[selectedId] : null
+// );
+
+// // Selector for filtered invoice data based on filter criteria
+// export const selectFilteredInvoices = createSelector(
+//   selectAll, // Get all entities
+//   selectFilterCriteria,
+//   (allInvoices, filterCriteria) => {
+//     if (!filterCriteria.draft && !filterCriteria.paid && !filterCriteria.pending) {
+//       return allInvoices;
+//     }
+
+//     return allInvoices.filter(invoice =>
+//       (filterCriteria.paid && invoice.status === 'paid') ||
+//       (filterCriteria.pending && invoice.status === 'pending') ||
+//       (filterCriteria.draft && invoice.status === 'draft')
+//     );
+//   }
+// );
 
 
 
