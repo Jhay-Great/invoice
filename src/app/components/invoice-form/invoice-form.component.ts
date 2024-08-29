@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel, FormsModule, Form, FormArray } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-invoice-form',
@@ -64,6 +65,7 @@ export class InvoiceFormComponent implements OnInit{
 
   handleFormSubmission () {
     console.log(this.form.value);
+    console.log(uuid())
   }
 }
 
