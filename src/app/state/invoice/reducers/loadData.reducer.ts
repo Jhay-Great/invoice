@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 // local import
 import {
@@ -28,6 +29,27 @@ const initialState:InvoiceState = {
   loading: false,
   error: '',
 };
+
+// defining or extending the entity state
+export interface InvoiceStates extends EntityState<LoadDataInterface> {
+  filterCriteria: FilterCriteriaType,
+  selectedInvoiceId: string,
+  loading: boolean,
+  error: string,
+
+}
+
+export const invoiceAdapter: EntityAdapter<LoadDataInterface> = createEntityAdapter<LoadDataInterface>();
+
+// initialize or declare a new initial state
+export const initialInvoiceState: InvoiceStates = invoiceAdapter.getInitialState({
+    filterCriteria: {paid: false, pending: false, draft: false},  
+    selectedInvoiceId: '',
+    loading: false,
+    error: '',
+})
+
+
 
 export const loadDataReducer = createReducer(
   initialState,
