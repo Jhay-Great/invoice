@@ -6,7 +6,8 @@
 </p>
 
 <form >
-    <fieldset>
+    <!-- senders fieldset / section -->
+    <fieldset class="sender-fieldset">
         <legend> Bill From </legend>
         <div class="street-address-container">
             <label for="street-address">Street address</label>
@@ -25,7 +26,48 @@
             <input type="text" name="country" id="country">
         </div>
     </fieldset>
-    <fieldset>
+    <!-- client section -->
+    <fieldset class="client-fieldset">
         <legend> Bill To </legend>
+        <div class="client-name-container">
+            <label for="client-name">Client's Name</label>
+            <input type="text" name="client-name" id="client-name">
+        </div>
+        <div class="client-email-container">
+            <label for="client-email">Client's Email</label>
+            <input type="text" name="client-email" id="client-email">
+        </div>
+        <div class="street-address-container">
+            <label for="street-address">Street address</label>
+            <input type="text" name="street-address" id="street-address">
+        </div>
+        <div class="city-container">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city">
+        </div>
+        <div class="post-code-container">
+            <label for="post-code">Post code</label>
+            <input type="text" name="post-code" id="post-code">
+        </div>
+        <div class="country-container">
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country">
+        </div>
+    </fieldset>
+
+    <!-- invoice terms -->
+    <fieldset class="invoice-terms">
+        <div class="createAt-container">
+            <label for="createdAt">Invoice Date</label>
+            <input type="date" name="createdAt" id="createdAt">
+        </div>
+        <div class="paymentDue-container">
+            <label for="paymentDue">Payment Terms</label>
+            <input type="text" name="paymentDue" id="paymentDue">
+        </div>
+        <div class="description-container">
+            <label for="description">Project Description</label>
+            <input type="text" name="description" id="description">
+        </div>
     </fieldset>
 </form>
