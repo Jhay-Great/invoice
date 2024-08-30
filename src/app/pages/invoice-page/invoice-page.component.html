@@ -49,7 +49,7 @@
     <!-- content -->
     <main>
         @for (invoice of data | async; track $index) {
-            <div class="invoice" [routerLink]=" 'invoice/:invoice.id' " (click)="handleSelectedInvoice(invoice.id)">
+            <div class="invoice font-size-body" [routerLink]=" 'invoice/:invoice.id' " (click)="handleSelectedInvoice(invoice.id)">
                 <!-- id -->
                 <p class="id">
                     {{ invoice.id }}
@@ -63,13 +63,16 @@
                     {{ invoice.clientName }}
                 </p>
                 <!-- price -->
-                <p class="price">
+                <p class="price font-size-h3">
                     {{ invoice.paymentTerms}}
                 </p>
                 <!-- status -->
-                <p class="status">
-                    {{ invoice.status }}
-                </p>
+                <div class="status-container">
+                    <div class="ellipsis"></div>
+                    <p class="status">
+                        {{ invoice.status }}
+                    </p>
+                </div>
             </div>
 
         }

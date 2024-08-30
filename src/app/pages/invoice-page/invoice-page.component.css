@@ -19,11 +19,12 @@ main {
 .invoice {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 40px auto;
+    grid-template-rows: 30px auto;
     background: white;
     border: none;
     border-radius: 8px;
     padding: 2rem;
+    row-gap: 5px;
 }
 
 .date {
@@ -35,9 +36,23 @@ main {
     grid-column: 2;
 }
 
-.status {
+.status-container {
     grid-row: 2;
     grid-column: 2;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.ellipsis {
+    border: none;
+    border-radius: 50%;
+    width: 8px;
+    /* height: 20px; */
+    aspect-ratio: 1;
+    background: var(--color-green);;
+}
+.price {
+    font-weight: 700;
 }
 
 
