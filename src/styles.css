@@ -7,20 +7,24 @@
 }
 
 :root {
+    
     /* colors */
     --color-purple: #7c5dfa;
     --color-purple-light: #9277ff;
     --color-dark-blue: #1e2139;
+    --color-dark-blue-variant-1: #373B53;
     --color-dark-blue-light: #252945;
     --color-light-blue-lighter: #DFE3FA;
     --color-light-blue: #888EB0; 
-    --color-light-blue-darker: #7E88C3;
+    --color-light-blue-darker: #7E88C3; 
     --color-black-shade: #0C0E16;
     --color-dark-blue-dark: #141625;
-    --color-white-shade: #F8F8FB; /*(Light BG) */
     --color-red-lighter: #9277FF;
     --color-red: #EC5757;
     --color-green: #33D69F;
+    --color-white: #FFF;
+    --color-white-shade: #F8F8FB; /*(Light BG) */
+    --color-white-shade-2: #F9FAFE;
 
     /* FONTS */
     --font-size-h1: 32px;
@@ -53,7 +57,8 @@ app-root {
 }
 
 /* app-root > :is(:nth-child(3)) { */
-app-invoice-page {
+app-invoice-page,
+app-invoice-detail-page {
     flex: 1;
     padding: 2rem 1.5rem;
     height: 100%;

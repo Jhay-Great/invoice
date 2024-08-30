@@ -194,50 +194,52 @@
 
 @if (data$ | async; as invoice) {
     <section class="invoice-details">
-      <div>
-        <div>
-          <p class="id">{{invoice.id}}</p>
-          <p class="work-description">{{invoice.description}}</p>
-        </div>
-      
-        <div class="sender-address">
-          <p class="street-name">{{invoice.senderAddress.street}}</p>
-          <p class="city">{{ invoice.senderAddress.city }}</p>
-          <p class="post-code">{{ invoice.senderAddress.postCode }}</p>
-          <p class="country">{{ invoice.senderAddress.country}}</p>
-        </div>
-      </div>
-  
-      <div>
-        <div class="dates">
-          <div class="invoice-date">
-            <p class="header">Invoice Date</p>
-            <p class="text">{{ invoice.createdAt | date }}</p>
-          </div>
-          
-          <div class="payment-due-date">
-            <p class="header">Payment Due</p>
-            <p class="text">{{ invoice.paymentDue | date }}</p>
-          </div>
-        </div>
-  
-        <div class="recipient-data">
-          <p class="bill-to">Bill To</p>
-          <p class="name">{{ invoice.clientName }}</p>
+        <section class="basic-info">
+            <div>
+              <div>
+                <p class="id">{{invoice.id}}</p>
+                <p class="work-description">{{invoice.description}}</p>
+              </div>
+            
+              <div class="sender-address">
+                <p class="street-name">{{invoice.senderAddress.street}}</p>
+                <p class="city">{{ invoice.senderAddress.city }}</p>
+                <p class="post-code">{{ invoice.senderAddress.postCode }}</p>
+                <p class="country">{{ invoice.senderAddress.country}}</p>
+              </div>
+            </div>
         
-          <div class="sender-address">
-            <p class="street-name">{{invoice.clientAddress.street}}</p>
-            <p class="city">{{ invoice.clientAddress.city }}</p>
-            <p class="post-code">{{ invoice.clientAddress.postCode }}</p>
-            <p class="country">{{ invoice.clientAddress.country}}</p>
-          </div>
-        </div>
+            <div>
+              <div class="dates">
+                <div class="invoice-date">
+                  <p class="header">Invoice Date</p>
+                  <p class="bold-text">{{ invoice.createdAt | date }}</p>
+                </div>
+                
+                <div class="payment-due-date">
+                  <p class="header">Payment Due</p>
+                  <p class="bold-text">{{ invoice.paymentDue | date }}</p>
+                </div>
+              </div>
         
-        <div class="sender">
-          <p class="sent-to">Sent to</p>
-          <p class="email">{{ invoice.clientEmail }}</p>
-        </div>
-      </div>
+              <div class="recipient-data">
+                <p class="bill-to header">Bill To</p>
+                <p class="bold-text name">{{ invoice.clientName }}</p>
+              
+                <div class="sender-address">
+                  <p class="street-name">{{invoice.clientAddress.street}}</p>
+                  <p class="city">{{ invoice.clientAddress.city }}</p>
+                  <p class="post-code">{{ invoice.clientAddress.postCode }}</p>
+                  <p class="country">{{ invoice.clientAddress.country}}</p>
+                </div>
+              </div>
+              
+              <div class="sender">
+                <p class="sent-to header">Sent to</p>
+                <p class="bold-text email">{{ invoice.clientEmail }}</p>
+              </div>
+            </div>
+        </section>
   
       <section class="purchase-prices">
         @for (item of invoice.items; track $index) {
@@ -246,7 +248,7 @@
               <p class="item-name">{{ item.name }}</p>
               <p class="price-calc">{{ item.quantity }} x {{ item.price | currency:'GBP':'symbol' }}</p>
             </div>
-            <div class="item-total">
+            <div class="item-total-price">
               <p>{{ item.total }}</p>
             </div>
           </div>
