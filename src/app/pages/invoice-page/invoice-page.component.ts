@@ -8,7 +8,7 @@ import { selectLoadInvoice, selectLoadState } from '../../state/invoice/selector
 import { onLoadDataAction } from '../../state/invoice/actions/loadData.action';
 import { AppState } from '../../interfaces/AppState.interface';
 import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
-import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
+// import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
 
 @Component({
   selector: 'app-invoice-page',
@@ -22,6 +22,7 @@ export class InvoicePageComponent implements OnInit {
   data = this.store.select(selectLoadInvoice);
   state = this.store.select(selectLoadState);
   filterOptions = {paid: false, pending: false, draft: false};
+  isFormActive:boolean = false;
 
   
   constructor (
@@ -59,6 +60,12 @@ export class InvoicePageComponent implements OnInit {
   handleSelectedInvoice (invoiceId:string) {
 
     this.store.dispatch(detailedInvoice({selectedInvoiceId: invoiceId}))
+  }
+
+  displayForm ():void {
+    // this.isFormActive = !this.isFormActive;
+    this.isFormActive = true;
+    console.log(this.isFormActive);
   }
   
 }

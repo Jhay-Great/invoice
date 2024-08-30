@@ -1,20 +1,20 @@
 <!-- header -->
-@if ( state | async ) {
-    <header>
-        <section class="page-title">
-            <h1 class="title">Invoice</h1>
-            <p class="status">
-                There are 7 total invoices
-            </p>
-        </section>
-    
-        <section class="filter" (click)="displayDropDownMenu()" >
+<header>
+    <section class="page-title">
+        <h1 class="title">Invoice</h1>
+        <p class="status">
+            <span class="for-large-screens">There are</span> 7 <span class="for-large-screens">total</span> invoices
+        </p>
+    </section>
+
+    <section class="invoice-list-page-controls">
+        <button class="filter" (click)="displayDropDownMenu()" >
             <!-- would need to display this dynamically for different viewport -->
             <p>Filter</p>
             <!-- svg -->
             <img src="../../../assets/svgs/icon-arrow-down.svg" alt="down arrow svg icon on filter dropdown">
-        </section>
-
+        </button>
+    
         <!-- filter dropdown -->
         @if (isEmpty) {
             <section class="filter-dropdown-menu" (click)="filterInvoiceData($event)" #InputParentContainer>
@@ -35,17 +35,24 @@
         }
     
         <!-- create a new invoice -->
-        <section class="new-invoice">
+        <!-- <button class="new-invoice" [routerLink]=" " (click)="displayForm()"> -->
+            <button class="new-invoice" [routerLink]="['./form']" (click)="displayForm()">
             <!-- svg -->
-            <p>New Invoice</p>
-        </section>
-        
-    </header>
+            <div class="svg-container">
+                <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"><path d="M6.313 10.023v-3.71h3.71v-2.58h-3.71V.023h-2.58v3.71H.023v2.58h3.71v3.71z" fill="#7C5DFA" fill-rule="nonzero"/></svg>
+            </div>
+            <p>New <span class="hidden">Invoice</span></p>
+        </button>
+
+    </section>
     
+</header>
+
+@if ( state | async ) {
     <!-- content -->
     <main>
         @for (invoice of data | async; track $index) {
-            <div class="invoice" [routerLink]=" 'invoice/:invoice.id' " (click)="handleSelectedInvoice(invoice.id)">
+            <div class="invoice font-size-body" [routerLink]=" 'invoice/:invoice.id' " (click)="handleSelectedInvoice(invoice.id)">
                 <!-- id -->
                 <p class="id">
                     {{ invoice.id }}
@@ -59,13 +66,18 @@
                     {{ invoice.clientName }}
                 </p>
                 <!-- price -->
-                <p class="price">
+                <p class="price font-size-h3">
                     {{ invoice.paymentTerms}}
                 </p>
                 <!-- status -->
-                <p class="status">
-                    {{ invoice.status }}
-                </p>
+                <div class="status-container">
+                    <div>
+                        <div class="ellipsis"></div>
+                        <p class="status">
+                            {{ invoice.status }}
+                        </p>
+                    </div>
+                </div>
             </div>
 
         }

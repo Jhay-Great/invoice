@@ -5,6 +5,12 @@ app-app-banner {
     background-color: #373B53;
 }
 
-router-outlet {
-    display: none;
+
+@media screen and (min-width: 920px) {
+    app-app-banner {
+        width: 100px;
+        border-radius: 0 20px 20px 0;
+        flex-direction: column;
+    }
 }
+

@@ -33,3 +33,18 @@
     border: none;
     border-radius: 50%;
 }
+
+
+@media screen and (min-width: 920px) {
+    .banner-first {
+        flex-direction: column;
+        padding: 0;
+        border-bottom: 1px solid #979797;
+        border-right: none;
+        width: 100%;
+        padding-block-end: 2rem;
+    }
+    .logo {
+        height: fit-content;
+    }
+}

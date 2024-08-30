@@ -5,13 +5,14 @@ import { AppState } from '../../interfaces/AppState.interface';
 import { selectInvoice } from '../../state/invoice/selectors/loadData.selector';
 import { Observable } from 'rxjs';
 // import { InvoiceState } from '../../state/invoice/reducers/loadData.reducer';
-
 import { CommonModule } from '@angular/common';
+import { GoBackComponent } from '../../components/go-back/go-back.component';
+
 
 @Component({
   selector: 'app-invoice-detail-page',
   standalone: true,
-  imports: [ CommonModule, RouterLink, ],
+  imports: [ CommonModule, RouterLink, GoBackComponent, ],
   templateUrl: './invoice-detail-page.component.html',
   styleUrl: './invoice-detail-page.component.css'
 })
