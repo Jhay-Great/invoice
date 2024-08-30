@@ -97,3 +97,14 @@ article {
     color: white;
     font-weight: 600;
 }
+
+
+
+/* MEDIA QUERIES min-width: 920px */
+@media screen and (min-width: 920px) {
+    .invoice {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
