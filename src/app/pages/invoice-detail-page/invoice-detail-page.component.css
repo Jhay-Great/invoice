@@ -40,6 +40,9 @@
     width: 100%;
     gap: 1rem;
 }
+.status-container > p:first-child {
+    color: var(--color-light-blue);
+}
 
 .operations {
     position: absolute;
