@@ -6,11 +6,12 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../interfaces/AppState.interface';
 import { addInvoice } from '../../state/invoice/actions/loadData.action';
 import { RouterLink, Router } from '@angular/router';
+import { GoBackComponent } from '../go-back/go-back.component';
 
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
-  imports: [ FormsModule, ReactiveFormsModule ],
+  imports: [FormsModule, ReactiveFormsModule, GoBackComponent],
   templateUrl: './invoice-form.component.html',
   styleUrl: './invoice-form.component.css'
 })
