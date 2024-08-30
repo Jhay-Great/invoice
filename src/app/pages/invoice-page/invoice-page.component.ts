@@ -33,7 +33,7 @@ export class InvoicePageComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.store.dispatch(onLoadDataAction())
+    // this.store.dispatch(onLoadDataAction())
     
     
   }

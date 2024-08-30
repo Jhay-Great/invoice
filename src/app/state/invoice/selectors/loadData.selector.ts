@@ -29,12 +29,13 @@ export const selectLoadInvoice = createSelector(
       return invoices;
     }
     
-    return invoices.filter(
-      (invoice) =>
-        (filter.paid && invoice.status === 'paid') ||
-        (filter.pending && invoice.status === 'pending') ||
-        (filter.draft && invoice.status === 'draft')
-    );
+    return invoices;
+    // return invoices.filter(
+    //   (invoice) =>
+    //     (filter.paid && invoice.status === 'paid') ||
+    //     (filter.pending && invoice.status === 'pending') ||
+    //     (filter.draft && invoice.status === 'draft')
+    // );
   }
 );
 
