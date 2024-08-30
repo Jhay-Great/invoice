@@ -1,9 +1,45 @@
+header, main {
+    width: min(900px, 100%);
+
+}
+
 header,
 .filter {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.invoice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 40px auto;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.date {
+    grid-column: 1;
+}
+
+.name {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.status {
+    grid-row: 2;
+    grid-column: 2;
+}
+
 
 .empty-container {
     width: 100%;

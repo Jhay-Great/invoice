@@ -3,6 +3,7 @@
     height: 100%;
     background-color: #fff;
     border-color: transparent;
+    padding: 2rem;
 }
 
 @media screen and (min-width: 580px) {

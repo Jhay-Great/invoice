@@ -18,6 +18,7 @@ export const loadDataOnFailure = createAction(
     props<{error: string}>()
 )
 
+// CRUD
 export const addInvoice = createAction(
     '[Invoice API] Add Invoice',
     props<{ invoice: LoadDataInterface }>()

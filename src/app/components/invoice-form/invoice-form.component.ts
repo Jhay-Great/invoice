@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel, FormsModule, Form, FormArray } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidV4 } from 'uuid';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../interfaces/AppState.interface';
+import { addInvoice } from '../../state/invoice/actions/loadData.action';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-form',
@@ -16,6 +20,8 @@ export class InvoiceFormComponent implements OnInit{
 
   constructor (
     private fb: FormBuilder,
+    private store: Store<AppState>,
+    private router: Router,
   ) {
   };
   
@@ -74,7 +80,11 @@ export class InvoiceFormComponent implements OnInit{
       id,
       ...invoiceData,
     }
+    console.log('Dispatching addInvoice with:', invoice);
     console.log(invoice);
+    this.store.dispatch(addInvoice({invoice}));
+    this.router.navigate([''])
+
     
   }
 }

@@ -6,6 +6,7 @@ import {
   onLoadDataAction,
   loadDataOnSuccess,
   loadDataOnFailure,
+  addInvoice,
   // dataLoadingActions,
 } from '../actions/loadData.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
@@ -60,7 +61,44 @@ export const loadDataReducer = createReducer(
     ...state, 
     selectedInvoiceId
   })),
+  on(addInvoice, (state, { invoice }) => (
+    console.log(invoice),
+    invoiceAdapter.addOne(invoice, state)
+  )
+),
 )
+
+
+
+// on(InvoiceActions.loadInvoices, (state, { invoices }) => 
+//   invoiceAdapter.setAll(invoices, { ...state, loading: false })
+// ),
+// on(InvoiceActions.addInvoice, (state, { invoice }) => 
+//   invoiceAdapter.addOne(invoice, state)
+// ),
+// on(InvoiceActions.updateInvoice, (state, { invoice }) => 
+//   invoiceAdapter.updateOne({ id: invoice.id, changes: invoice }, state)
+// ),
+// on(InvoiceActions.deleteInvoice, (state, { id }) => 
+//   invoiceAdapter.removeOne(id, state)
+// ),
+// on(InvoiceActions.selectInvoice, (state, { id }) => 
+//   ({ ...state, selectedInvoiceId: id })
+// ),
+// on(InvoiceActions.setFilterCriteria, (state, { criteria }) => 
+//   ({ ...state, filterCriteria: criteria })
+// ),
+// on(InvoiceActions.setLoading, (state, { loading }) => 
+//   ({ ...state, loading })
+// ),
+// on(InvoiceActions.setError, (state, { error }) => 
+//   ({ ...state, error })
+// )
+
+
+
+
+
 
 // export const _invoiceReducer = createReducer(
 //   initialInvoiceState,
@@ -166,6 +204,8 @@ export const loadDataReducer = createReducer(
 //     );
 //   }
 // );
+
+
 
 
 
