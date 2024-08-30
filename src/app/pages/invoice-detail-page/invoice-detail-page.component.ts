@@ -29,7 +29,7 @@ export class InvoiceDetailPageComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.store.select(selectInvoice));
     // console.log(this.data$);
-    this.store.select(selectInvoice).subscribe(val => console.log(val))
+    // this.store.select(selectInvoice).subscribe(val => console.log(val))
   }
 
   edit () {

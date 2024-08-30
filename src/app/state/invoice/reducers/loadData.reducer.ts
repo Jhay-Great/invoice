@@ -10,7 +10,8 @@ import {
   // dataLoadingActions,
 } from '../actions/loadData.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
-import { detailedInvoice, FilterCriteriaType, filterInvoice } from '../actions/filterInvoice.action';
+// import { detailedInvoice, FilterCriteriaType, filterInvoice } from '../actions/filterInvoice.action';
+import { detailedInvoice, filterInvoice, FilterCriteriaType } from '../actions/loadData.action';
 
 // export interface InvoiceState {
 //   data: LoadDataInterface[];

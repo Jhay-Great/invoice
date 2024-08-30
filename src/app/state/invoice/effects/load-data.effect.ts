@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 // local module imports
-import { LOAD_INVOICE_DATA, loadDataOnFailure, loadDataOnSuccess } from "../actions/loadData.action";
+import { editInvoiceForm, LOAD_INVOICE_DATA, loadDataOnFailure, loadDataOnSuccess } from "../actions/loadData.action";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { LoadInvoiceDataService } from "../../../services/load-invoice-data.service";
 
@@ -22,13 +22,22 @@ export class LoadDataEffect {
           )
         )
       );
-    
+
+      loadInvoice$ = createEffect(() => (
+        this.actions$.pipe(
+          ofType(editInvoiceForm),
+          
+        )
+      ))
+      
     
     constructor (
         private actions$: Actions,
         private invoiceService: LoadInvoiceDataService
     ) {};
 }
+
+
 
 /**EFFECTS (current understanding)
  * IMPORTANT: action

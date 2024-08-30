@@ -7,8 +7,10 @@ import { RouterLink } from '@angular/router';
 import { selectLoadInvoice, selectLoadState } from '../../state/invoice/selectors/loadData.selector';
 import { onLoadDataAction } from '../../state/invoice/actions/loadData.action';
 import { AppState } from '../../interfaces/AppState.interface';
-import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
+// import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
 // import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
+import { detailedInvoice, filterInvoice } from '../../state/invoice/actions/loadData.action';
+
 
 @Component({
   selector: 'app-invoice-page',
@@ -39,12 +41,10 @@ export class InvoicePageComponent implements OnInit {
   }
 
   displayDropDownMenu () {
-    console.log('dropdown menu is active...')
     this.isEmpty = !this.isEmpty;
   }
 
   filterInvoiceData (event:MouseEvent) {
-    console.log('about to dispatch filter...')
     // return;
     const target = event.target as HTMLInputElement;
     const { name } = target;
@@ -57,10 +57,7 @@ export class InvoicePageComponent implements OnInit {
 
     this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
 
-    console.log('dispatch already occurred')
-    
   }
-
   handleSelectedInvoice (invoiceId:string) {
 
     this.store.dispatch(detailedInvoice({selectedInvoiceId: invoiceId}))
