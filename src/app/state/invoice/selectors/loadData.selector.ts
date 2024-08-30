@@ -2,8 +2,9 @@ import { createSelector } from '@ngrx/store';
 
 import { AppState } from '../../../interfaces/AppState.interface';
 import { invoiceAdapter, InvoiceState } from '../reducers/loadData.reducer';
-import { FilterCriteriaType } from '../actions/filterInvoice.action';
+// import { FilterCriteriaType } from '../actions/filterInvoice.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
+import { FilterCriteriaType } from '../actions/loadData.action';
 
 
 

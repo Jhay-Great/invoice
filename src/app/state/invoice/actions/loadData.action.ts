@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { LoadDataInterface } from "../../../interfaces/loadData.interface";
+// import { FilterCriteriaType } from "./filterInvoice.action";
 
 // local imports
 // import { LoadData } from '../../../interfaces/loadData.interface';
@@ -26,6 +27,10 @@ export const addInvoice = createAction(
     props<{ invoice: LoadDataInterface }>()
   );
   
+  export const editInvoiceForm = createAction(
+    '[Invoice API] display existing Invoice for edit',
+    props<{ invoice: LoadDataInterface }>()
+  );
   export const updateInvoice = createAction(
     '[Invoice API] Update Invoice',
     props<{ invoice: LoadDataInterface }>()
@@ -35,6 +40,26 @@ export const addInvoice = createAction(
     '[Invoice API] Delete Invoice',
     props<{ id: string }>()
   );
+
+
+  export interface FilterCriteriaType {
+    pending: boolean,
+    paid: boolean,
+    draft: boolean,
+}
+
+  const FILTER = '[Filter] filtering invoice data'
+export const filterInvoice = createAction(
+    FILTER,
+    props<{filterCriteria: FilterCriteriaType}>(),
+)
+
+// selected invoice
+const SELECTED_INVOICE = '[Selected invoice] routes to the selected invoice';
+export const detailedInvoice = createAction(
+    SELECTED_INVOICE,
+    props<{selectedInvoiceId: string}>(),
+)
 
 
 

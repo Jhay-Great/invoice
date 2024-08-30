@@ -7,8 +7,10 @@ import { RouterLink } from '@angular/router';
 import { selectLoadInvoice, selectLoadState } from '../../state/invoice/selectors/loadData.selector';
 import { onLoadDataAction } from '../../state/invoice/actions/loadData.action';
 import { AppState } from '../../interfaces/AppState.interface';
-import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
+// import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
 // import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
+import { detailedInvoice, filterInvoice } from '../../state/invoice/actions/loadData.action';
+
 
 @Component({
   selector: 'app-invoice-page',
@@ -33,7 +35,7 @@ export class InvoicePageComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.store.dispatch(onLoadDataAction())
+    // this.store.dispatch(onLoadDataAction())
     
     
   }
@@ -56,7 +58,6 @@ export class InvoicePageComponent implements OnInit {
     this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
 
   }
-
   handleSelectedInvoice (invoiceId:string) {
 
     this.store.dispatch(detailedInvoice({selectedInvoiceId: invoiceId}))

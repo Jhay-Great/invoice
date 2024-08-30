@@ -1,12 +1,12 @@
 <div class="main-container">
   <!-- go back -->
-
+  <app-go-back />
   <!-- header -->
   <p class="title">New Invoice</p>
 
   <form [formGroup]="form" (ngSubmit)="handleFormSubmission()">
     <!-- senders fieldset / section -->
-    <fieldset class="sender-fieldset" formGroupName="senderData">
+    <fieldset class="sender-fieldset" formGroupName="senderAddress">
       <legend>Bill From</legend>
       <div class="street-address-container">
         <label for="street-address">Street address</label>
@@ -46,7 +46,7 @@
       </div>
     </fieldset>
     <!-- client section -->
-    <fieldset class="client-fieldset" formGroupName="clientData">
+    <fieldset class="client-fieldset" formGroupName="clientAddress">
       <legend>Bill To</legend>
       <div class="client-name-container">
         <label for="client-name">Client's Name</label>
@@ -54,7 +54,7 @@
           type="text"
           name="client-name"
           id="client-name"
-          formGroupName="name"
+          formControlName="name"
         />
       </div>
       <div class="client-email-container">
@@ -118,12 +118,14 @@
       </div>
       <div class="paymentDue-container">
         <label for="paymentDue">Payment Terms</label>
-        <input
-          type="text"
-          name="paymentDue"
-          id="paymentDue"
-          formControlName="paymentDue"
-        />
+        <select id="paymentOptions" formControlName="paymentDue">
+          @for (paymentOption of paymentOptions; track $index) {
+            <option value="{{paymentOption.value}}">
+              {{ paymentOption.label}}
+            </option>
+          }
+          
+        </select>
       </div>
       <div class="description-container">
         <label for="description">Project Description</label>
@@ -166,7 +168,7 @@
                   />
                 </div>
                 <div class="total-price-container">
-                  <label for="total_{{$index}}">Price</label>
+                  <label for="total_{{$index}}">Total</label>
                   <input
                     type="number"
                     id="total_{{$index}}"
