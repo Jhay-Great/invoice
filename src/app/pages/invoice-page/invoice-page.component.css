@@ -11,6 +11,15 @@ header,
     align-items: center;
     position: relative;
 }
+.status,
+.name,
+.date {
+    color: var(--color-light-blue);
+}
+.title, .id, .price, .filter {
+    font-weight: bold;
+}
+
 .filter {
     gap: 1rem;
 }
@@ -86,9 +95,12 @@ main {
     aspect-ratio: 1;
     background: var(--color-green);;
 }
-.price {
-    font-weight: 700;
+.status {
+    font-weight: 500;
 }
+/* .price {
+    font-weight: 700;
+} */
 
 
 .empty-container {
