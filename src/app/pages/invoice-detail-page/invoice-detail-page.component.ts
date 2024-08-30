@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../interfaces/AppState.interface';
 import { selectInvoice } from '../../state/invoice/selectors/loadData.selector';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 // import { InvoiceState } from '../../state/invoice/reducers/loadData.reducer';
 import { CommonModule } from '@angular/common';
 import { GoBackComponent } from '../../components/go-back/go-back.component';
@@ -33,7 +33,8 @@ export class InvoiceDetailPageComponent implements OnInit {
   }
 
   edit () {
-    console.log('..edit')
+    this.data$.subscribe(val => console.log(val))
+    console.log('..edit');
   }
   delete () {
     console.log('..delete')

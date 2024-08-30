@@ -106,7 +106,7 @@
 
 .basic-info > div:nth-child(2) {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     row-gap: 1rem;
     margin-top: 1.5rem;
 }
@@ -164,9 +164,20 @@
         width: initial;
         height: initial;
         padding: initial;
+        gap: 1rem;
     }
     .invoice-details {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
+    }
+    .status-container {
+        width: fit-content;
+    }
+    .basic-info > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        
     }
 }
