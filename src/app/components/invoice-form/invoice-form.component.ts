@@ -28,13 +28,13 @@ export class InvoiceFormComponent implements OnInit{
   
   ngOnInit(): void {
     this.form = this.fb.group({
-      senderData: this.fb.group({
+      senderAddress: this.fb.group({
         street: ['', Validators.required],
         city: ['', Validators.required],
         postCode: ['', Validators.required],
         country: ['', Validators.required],
       }),
-      clientData: this.fb.group({
+      clientAddress: this.fb.group({
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         street: ['', Validators.required],
@@ -75,19 +75,36 @@ export class InvoiceFormComponent implements OnInit{
     const uuid = uuidV4();
     const id = uuid.slice(0, 6);
     
+    const {clientAddress: { name: clientName, email: clientEmail, ...clientAddress }, ...formData} = this.form.value;
 
-    const invoiceData = this.form.value;
+    const total = this.calculateTotalSum(formData.items, 'total')
+    console.log(total);
+
     const invoice = {
       id,
-      ...invoiceData,
+      clientAddress,
+      clientName,
+      clientEmail,
+      ...formData,
+      status: 'paid',
+      total,
     }
-    console.log('Dispatching addInvoice with:', invoice);
-    console.log(invoice);
+    // console.log('Dispatching addInvoice with:', invoice);
+    // console.log(invoice);
     this.store.dispatch(addInvoice({invoice}));
     this.router.navigate([''])
 
     
   }
+  
+
+  calculateTotalSum<T>(data: T[], key: keyof T): number {
+    return data.reduce((accumulator, item) => accumulator + (item[key] as unknown as number), 0);
+  }
+  
+
+
+  
 }
 
 

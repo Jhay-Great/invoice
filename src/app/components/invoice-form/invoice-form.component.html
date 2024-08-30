@@ -6,7 +6,7 @@
 
   <form [formGroup]="form" (ngSubmit)="handleFormSubmission()">
     <!-- senders fieldset / section -->
-    <fieldset class="sender-fieldset" formGroupName="senderData">
+    <fieldset class="sender-fieldset" formGroupName="senderAddress">
       <legend>Bill From</legend>
       <div class="street-address-container">
         <label for="street-address">Street address</label>
@@ -46,7 +46,7 @@
       </div>
     </fieldset>
     <!-- client section -->
-    <fieldset class="client-fieldset" formGroupName="clientData">
+    <fieldset class="client-fieldset" formGroupName="clientAddress">
       <legend>Bill To</legend>
       <div class="client-name-container">
         <label for="client-name">Client's Name</label>
