@@ -69,6 +69,7 @@ app-invoice-page {
 }
 button {
     cursor: pointer;
+    border-color: transparent;
     background-color: transparent;
 }
 app-invoice-form { /* subject to change later if needed */
@@ -95,7 +96,8 @@ app-invoice-page {
     font-size: var(--font-size-h3);
 }
 
-.hidden {
+.hidden,
+.for-large-screens {
     display: none;
 }
 
@@ -109,6 +111,10 @@ app-invoice-page {
     }
     app-invoice-page {
         overflow-y: scroll;
+
+    }
+    .for-large-screens {
+        display: inline;
 
     }
 }

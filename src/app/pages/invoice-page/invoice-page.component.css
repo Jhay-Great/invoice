@@ -4,10 +4,40 @@ header, main {
 }
 
 header,
-.filter {
+.filter,
+.invoice-list-page-controls{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+.filter {
+    gap: 1rem;
+}
+.invoice-list-page-controls {
+   gap: 1.5rem; 
+}
+
+.filter-dropdown-menu {
+    position: absolute;
+    bottom: -96px;
+    right: 100px;
+    width: 120px;
+    background: rebeccapurple;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: white;
+    text-transform: capitalize;
+    font-size: var(--font-size-body);
+}
+.filter-dropdown-menu > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 main {
@@ -24,7 +54,7 @@ main {
     border: none;
     border-radius: 8px;
     padding: 2rem;
-    row-gap: 5px;
+    gap: 5px 2rem;
 }
 
 .date {
@@ -34,14 +64,19 @@ main {
 .name {
     grid-row: 1;
     grid-column: 2;
+    justify-self: end;
 }
 
 .status-container {
-    grid-row: 2;
+    grid-row: 2 / 4;
     grid-column: 2;
     display: flex;
     gap: 5px;
     align-items: center;
+    border: none;
+    border-radius: 6px;
+    /* background: red; */
+    justify-content: center;
 }
 .ellipsis {
     border: none;
