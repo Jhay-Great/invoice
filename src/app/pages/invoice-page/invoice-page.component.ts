@@ -39,10 +39,12 @@ export class InvoicePageComponent implements OnInit {
   }
 
   displayDropDownMenu () {
+    console.log('dropdown menu is active...')
     this.isEmpty = !this.isEmpty;
   }
 
   filterInvoiceData (event:MouseEvent) {
+    console.log('about to dispatch filter...')
     // return;
     const target = event.target as HTMLInputElement;
     const { name } = target;
@@ -55,6 +57,8 @@ export class InvoicePageComponent implements OnInit {
 
     this.store.dispatch(filterInvoice({ filterCriteria: this.filterOptions}));
 
+    console.log('dispatch already occurred')
+    
   }
 
   handleSelectedInvoice (invoiceId:string) {

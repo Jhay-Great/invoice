@@ -84,7 +84,7 @@ export class InvoiceFormComponent implements OnInit{
     const {clientAddress: { name: clientName, email: clientEmail, ...clientAddress }, ...formData} = this.form.value;
 
     const total = this.calculateTotalSum(formData.items, 'total')
-    console.log(total);
+    // console.log(total);
 
     const invoice = {
       id,

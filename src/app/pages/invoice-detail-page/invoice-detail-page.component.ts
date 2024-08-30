@@ -31,4 +31,15 @@ export class InvoiceDetailPageComponent implements OnInit {
     // console.log(this.data$);
     this.store.select(selectInvoice).subscribe(val => console.log(val))
   }
+
+  edit () {
+    console.log('..edit')
+  }
+  delete () {
+    console.log('..delete')
+  }
+  markAsPaid () {
+    console.log('..marking as paid')
+  }
+  
 }
