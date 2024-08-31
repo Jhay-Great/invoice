@@ -160,6 +160,8 @@ export class InvoiceFormComponent implements OnInit{
   }
 
   handleFormSubmission () {
+
+    console.log('triggered...')
     
     const uuid = uuidV4();
     const id = uuid.slice(0, 6);
@@ -209,7 +211,7 @@ export class InvoiceFormComponent implements OnInit{
       total,
     }
 
-    // console.log('current data: ', invoice);
+    console.log('current data: ', invoice);
     
     // this.store.dispatch(updateInvoice({invoice}));
   }

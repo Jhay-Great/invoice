@@ -202,12 +202,12 @@
         <button  type="button"  class="draft">save as draft</button>
   
         <!-- save changes -->
-        <button type="submit" class="save-changes">save changes</button>
+        <button type="submit" class="save-changes">save & send</button>
       </section>
     </form>
 
   } @else {
-    <form [formGroup]="form" (ngSubmit)="handleFormSubmission()">
+    <form [formGroup]="form" (ngSubmit)="saveEditedChanges()">
       <!-- senders fieldset / section -->
       <fieldset class="sender-fieldset" formGroupName="senderAddress">
         <legend>Bill From</legend>
@@ -399,7 +399,7 @@
         <!-- <button  type="button"  class="draft">save as draft</button> -->
   
         <!-- save changes -->
-        <button type="submit" class="save-changes" (click)="saveEditedChanges()">save changes</button>
+        <button type="submit" class="save-changes" >save changes</button>
       </section>
     </form>
 
