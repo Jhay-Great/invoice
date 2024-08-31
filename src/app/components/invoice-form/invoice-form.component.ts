@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NgForm, NgModel, FormsModule, Form, FormArray } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidV4 } from 'uuid';
 import { Store } from '@ngrx/store';
+
+// local module imports
 import { AppState } from '../../interfaces/AppState.interface';
 import { addInvoice } from '../../state/invoice/actions/loadData.action';
-import { RouterLink, Router } from '@angular/router';
 import { GoBackComponent } from '../go-back/go-back.component';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-invoice-form',
@@ -24,11 +27,13 @@ export class InvoiceFormComponent implements OnInit{
     { value: 14, label: 'Net 14 Day' },
     { value: 30, label: 'Net 30 Day' },
     ];
+    isNewForm!:boolean;
 
   constructor (
     private fb: FormBuilder,
     private store: Store<AppState>,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
   };
   
@@ -55,6 +60,33 @@ export class InvoiceFormComponent implements OnInit{
       items: this.fb.array([]),
   
     })
+
+    this.isNewForm = true;
+    // this.activatedRoute.paramMap.subscribe(val => console.log(val));
+
+    // this.activatedRoute.paramMap.subscribe(
+    //   val => {
+    //     const d = val.get('form');
+    //     console.log(d);
+    //   }
+    // )
+
+    // this.activatedRoute.params.subscribe(params => {
+    //   // Access the route parameters directly from the params object
+    //   const id = params;
+    //   console.log('Route parameter id:', id);
+    // });
+
+        // Access route path segments
+        const routeSnapshot = this.activatedRoute.snapshot;
+        const routePath = routeSnapshot.url.map(segment => segment.path).join('/');
+        
+        // if (routePath === 'new-form') {
+        //   this.isNewForm = true;
+        // }
+
+        this.isNewForm = routePath === 'new-form' ? true : false;
+    
     
   }
 

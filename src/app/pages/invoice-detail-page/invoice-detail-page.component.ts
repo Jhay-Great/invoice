@@ -36,13 +36,12 @@ export class InvoiceDetailPageComponent implements OnInit {
   }
 
   edit () {
-    this.data$.subscribe(val => console.log(val))
+    // this.data$.subscribe(val => console.log(val))
     console.log('..edit');
   }
   delete (id:string) {
     this.applicationService.displayDeleteModal(id);
-    // this.store.dispatch(confirmDelete({id}));
-    // this.store.dispatch(deleteInvoice({id}));
+    
   }
   markAsPaid () {
     console.log('..marking as paid')

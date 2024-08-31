@@ -15,9 +15,7 @@ export class ApplicationService {
   invoiceId:Observable<string> = this.invoiceIdSubject$.asObservable();
   
 
-  constructor() { 
-
-   }
+  constructor() {}
 
    setInvoiceId(id:string) {
     this.id = id;
