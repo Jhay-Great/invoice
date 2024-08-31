@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { LoadDataInterface } from "../../../interfaces/loadData.interface";
+import { Update } from "@ngrx/entity";
 // import { FilterCriteriaType } from "./filterInvoice.action";
 
 // local imports
@@ -33,7 +34,8 @@ export const addInvoice = createAction(
   );
   export const updateInvoice = createAction(
     '[Invoice API] Update Invoice',
-    props<{ invoice: LoadDataInterface }>()
+    props<{ invoice: Update<LoadDataInterface> }>()
+    // props<{ invoice: LoadDataInterface }>()
   );
 
   export const confirmDelete = createAction(

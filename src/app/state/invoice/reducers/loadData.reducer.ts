@@ -8,6 +8,7 @@ import {
   loadDataOnFailure,
   addInvoice,
   deleteInvoice,
+  updateInvoice,
   // dataLoadingActions,
 } from '../actions/loadData.action';
 import { LoadDataInterface } from '../../../interfaces/loadData.interface';
@@ -80,11 +81,11 @@ export const loadDataReducer = createReducer(
       console.log(invoice), invoiceAdapter.addOne(invoice, state)
     )
   ),
-  on(
-    deleteInvoice, (state, { id }) => (
-      invoiceAdapter.removeOne(id, state)
-    )
-  )
+  on(updateInvoice, (state, { invoice }) => {
+    console.log(invoice);
+    return invoiceAdapter.updateOne(invoice, state);
+  }),
+  on(deleteInvoice, (state, { id }) => invoiceAdapter.removeOne(id, state))
 );
 
 // on(InvoiceActions.loadInvoices, (state, { invoices }) =>

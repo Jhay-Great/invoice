@@ -33,6 +33,7 @@ export class InvoiceFormComponent implements OnInit{
     ];
     isNewForm!:boolean;
     invoiceData$!: Observable<LoadDataInterface | undefined>;
+    invoiceId!:string;
 
   constructor (
     private fb: FormBuilder,
@@ -94,6 +95,7 @@ export class InvoiceFormComponent implements OnInit{
 
           this.invoiceData$.subscribe(data => {
             if (data) {
+              this.invoiceId = data.id;
               this.patchFormWithData(data);
             }
           })
@@ -198,22 +200,27 @@ export class InvoiceFormComponent implements OnInit{
     const {clientAddress: { name: clientName, email: clientEmail, ...clientAddress }, ...formData} = this.form.value;
 
     const total = this.calculateTotalSum(formData.items, 'total')
-    console.log(total);
+    // console.log(total);
 
     // CALCULATE AND ADD PAYMENT DUE
     const invoice = {
-      // id,
+      id: this.invoiceId,
       clientAddress,
       clientName,
       clientEmail,
       ...formData,
-      // status: 'paid',
+      status: 'paid',
       total,
     }
 
-    console.log('current data: ', invoice);
+    // console.log('current data: ', invoice);
     
     // this.store.dispatch(updateInvoice({invoice}));
+    this.store.dispatch(updateInvoice({invoice: {
+      id: this.invoiceId,
+      changes: invoice,
+    }}));
+    
   }
   
 
