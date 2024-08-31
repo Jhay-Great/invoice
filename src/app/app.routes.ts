@@ -25,12 +25,12 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'invoice/:id',
+        path: 'invoice',
         component: InvoiceDetailPageComponent,
         title: 'Invoice',
     },
     {
-        path: 'invoice/:id',
+        path: 'invoice',
         children: [
             {
                 path: 'edit-form',

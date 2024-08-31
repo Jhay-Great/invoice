@@ -52,7 +52,7 @@
     <!-- content -->
     <main>
         @for (invoice of data | async; track $index) {
-            <div class="invoice font-size-body" [routerLink]=" 'invoice/:invoice.id' " (click)="handleSelectedInvoice(invoice.id)">
+            <div class="invoice font-size-body" [routerLink]=" 'invoice' " (click)="handleSelectedInvoice(invoice.id)">
                 <!-- id -->
                 <p class="id">
                     {{ invoice.id }}
