@@ -320,8 +320,8 @@
           />
         </div>
         <div class="paymentDue-container">
-          <label for="paymentDue">Payment Terms</label>
-          <select id="paymentOptions" formControlName="paymentDue">
+          <label for="paymentTerms">Payment Terms</label>
+          <select id="paymentOptions" formControlName="paymentTerms">
             @for (paymentOption of paymentOptions; track $index) {
               <option value="{{paymentOption.value}}">
                 {{ paymentOption.label}}
