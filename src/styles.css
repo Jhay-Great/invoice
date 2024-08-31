@@ -114,6 +114,13 @@ app-invoice-page {
         flex-direction: row;
 
     }
+    app-invoice-page,
+app-invoice-detail-page {
+    flex: none;
+    width: 70%;
+    margin: auto;
+    
+}
     app-invoice-page {
         overflow-y: scroll;
 
