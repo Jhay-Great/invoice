@@ -8,7 +8,7 @@ import { AsyncPipe } from '@angular/common';
 
 // local module imports
 import { AppState } from '../../interfaces/AppState.interface';
-import { addInvoice } from '../../state/invoice/actions/loadData.action';
+import { addInvoice, updateInvoice } from '../../state/invoice/actions/loadData.action';
 import { GoBackComponent } from '../go-back/go-back.component';
 import { map, Observable, tap } from 'rxjs';
 import { selectInvoice } from '../../state/invoice/selectors/loadData.selector';
@@ -98,72 +98,8 @@ export class InvoiceFormComponent implements OnInit{
             }
           })
 
-
-          // this.invoiceData$.pipe(
-          //   map(data => {
-          //     // Transform the data to match the form structure
-          //     if (data) {
-          //       const itemsFormArray = this.fb.array(data.items.map(item => this.fb.group(item)));
-      
-          //       return {
-          //         senderAddress: {
-          //           street: data.senderAddress.street,
-          //           city: data.senderAddress.city,
-          //           postCode: data.senderAddress.postCode,
-          //           country: data.senderAddress.country,
-          //         },
-          //         clientAddress: {
-          //           name: data.clientName,
-          //           email: data.clientEmail,
-          //           street: data.clientAddress.street,
-          //           city: data.clientAddress.city,
-          //           postCode: data.clientAddress.postCode,
-          //           country: data.clientAddress.country,
-          //         },
-          //         createdAt: data.createdAt,
-          //         paymentTerms: data.paymentTerms,
-          //         description: data.description,
-          //         items: itemsFormArray,
-          //       };
-          //     }
-          //     return {};
-          //   })
-          // ).subscribe(formValue => {
-          //   this.form.patchValue(formValue);
-          // });
-          
-
-          // this.invoiceData$.pipe(
-          //   map(val => {
-          //     console.log(val);
-          //     const { clientEmail: email, clientName: name, clientAddress: clientData, } = val as LoadDataInterface;
-          //     const clientAddress = {
-          //       ...clientData,
-          //       email,
-          //       name,
-          //     }
-          //   })
-          // )
-          
-          // this.invoiceData$.subscribe(
-          //   data =>{
-          //     console.log(data);
-          //     const { clientEmail: email, clientName: name, clientAddress: clientData, } = data;
-          //     const clientAddress = {
-          //       ...clientData,
-          //       email,
-          //       name,
-          //     }
-
-          //     // this.form.patchValue(data);
-          //   },
-          // )
-          
-          // this.form.patchValue(this.invoiceData$);
-          // console.log(this.invoiceData$);
         }
 
-        // this.isNewForm = routePath === 'new-form' ? true : false;
     
     
   }
@@ -204,33 +140,6 @@ export class InvoiceFormComponent implements OnInit{
       (this.form.get('items') as FormArray).push(itemGroup);
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   get itemsFormArray() {
     return this.form.get('items') as FormArray;
@@ -281,6 +190,28 @@ export class InvoiceFormComponent implements OnInit{
 
   calculateTotalSum<T>(data: T[], key: keyof T): number {
     return data.reduce((accumulator, item) => accumulator + (item[key] as unknown as number), 0);
+  }
+
+  saveEditedChanges () {
+    const {clientAddress: { name: clientName, email: clientEmail, ...clientAddress }, ...formData} = this.form.value;
+
+    const total = this.calculateTotalSum(formData.items, 'total')
+    console.log(total);
+
+    // CALCULATE AND ADD PAYMENT DUE
+    const invoice = {
+      // id,
+      clientAddress,
+      clientName,
+      clientEmail,
+      ...formData,
+      // status: 'paid',
+      total,
+    }
+
+    // console.log('current data: ', invoice);
+    
+    // this.store.dispatch(updateInvoice({invoice}));
   }
   
 
