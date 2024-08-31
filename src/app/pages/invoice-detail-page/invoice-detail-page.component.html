@@ -22,7 +22,7 @@
         <!-- {{invoice.id}} -->
         <div class="operations">
             <!-- edit -->
-            <button class="edit" (click)="edit()">Edit</button>
+            <button class="edit" [routerLink]="'edit-form'" (click)="edit()">Edit</button>
     
             <!-- delete -->
             <button class="delete"  (click)="delete(invoice.id)">Delete</button>

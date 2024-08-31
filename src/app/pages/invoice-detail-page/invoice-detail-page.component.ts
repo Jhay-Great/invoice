@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../interfaces/AppState.interface';
 import { selectInvoice } from '../../state/invoice/selectors/loadData.selector';
@@ -25,6 +25,7 @@ export class InvoiceDetailPageComponent implements OnInit {
 
   constructor (
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private store: Store<AppState>,
     private applicationService: ApplicationService,
   ) {};
@@ -38,6 +39,7 @@ export class InvoiceDetailPageComponent implements OnInit {
   edit () {
     // this.data$.subscribe(val => console.log(val))
     console.log('..edit');
+    // this.router.navigate(['invoice/:id/edit-form']);
   }
   delete (id:string) {
     this.applicationService.displayDeleteModal(id);
