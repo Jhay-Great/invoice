@@ -115,7 +115,7 @@ app-invoice-page {
 
     }
     app-invoice-page,
-app-invoice-detail-page {
+    app-invoice-detail-page {
     flex: none;
     width: 70%;
     margin: auto;

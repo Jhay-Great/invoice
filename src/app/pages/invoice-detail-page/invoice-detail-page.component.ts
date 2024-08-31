@@ -7,6 +7,7 @@ import { Observable, tap } from 'rxjs';
 // import { InvoiceState } from '../../state/invoice/reducers/loadData.reducer';
 import { CommonModule } from '@angular/common';
 import { GoBackComponent } from '../../components/go-back/go-back.component';
+import { confirmDelete, deleteInvoice } from '../../state/invoice/actions/loadData.action';
 
 
 @Component({
@@ -36,8 +37,9 @@ export class InvoiceDetailPageComponent implements OnInit {
     this.data$.subscribe(val => console.log(val))
     console.log('..edit');
   }
-  delete () {
-    console.log('..delete')
+  delete (id:string) {
+    this.store.dispatch(confirmDelete({id}));
+    // this.store.dispatch(deleteInvoice({id}));
   }
   markAsPaid () {
     console.log('..marking as paid')
