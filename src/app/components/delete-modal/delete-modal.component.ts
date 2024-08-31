@@ -1,13 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { ApplicationService } from '../../services/application.service';
 import { Store } from '@ngrx/store';
+import { RouterLink, Router, Route } from '@angular/router';
+
+// local module imports
+import { ApplicationService } from '../../services/application.service';
 import { AppState } from '../../interfaces/AppState.interface';
 import { deleteInvoice } from '../../state/invoice/actions/loadData.action';
 
 @Component({
   selector: 'app-delete-modal',
   standalone: true,
-  imports: [],
+  imports: [ RouterLink, ],
   templateUrl: './delete-modal.component.html',
   styleUrl: './delete-modal.component.css'
 })
@@ -17,7 +20,8 @@ export class DeleteModalComponent {
 
   constructor (
     private applicationService: ApplicationService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router,
   ) {};
 
   cancelDeletion () {
@@ -28,7 +32,9 @@ export class DeleteModalComponent {
     this.applicationService.removeDeleteModal();
     const id = this.applicationService.id;
     
-    this.store.dispatch(deleteInvoice({id}))
+    this.store.dispatch(deleteInvoice({id}));
+    this.router.navigate([ '' ]);
+
   }
 
 
