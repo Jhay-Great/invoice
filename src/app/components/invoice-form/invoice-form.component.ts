@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { NgForm, NgModel, FormsModule, Form, FormArray } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidV4 } from 'uuid';
 import { Store } from '@ngrx/store';
+import { AsyncPipe } from '@angular/common';
+
+// local module imports
 import { AppState } from '../../interfaces/AppState.interface';
-import { addInvoice } from '../../state/invoice/actions/loadData.action';
-import { RouterLink, Router } from '@angular/router';
+import { addInvoice, updateInvoice } from '../../state/invoice/actions/loadData.action';
 import { GoBackComponent } from '../go-back/go-back.component';
+import { map, Observable, tap } from 'rxjs';
+import { selectInvoice } from '../../state/invoice/selectors/loadData.selector';
+import { InvoiceState } from '../../state/invoice/reducers/loadData.reducer';
+import { LoadDataInterface } from '../../interfaces/loadData.interface';
 
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, GoBackComponent],
+  imports: [FormsModule, ReactiveFormsModule, AsyncPipe, GoBackComponent],
   templateUrl: './invoice-form.component.html',
   styleUrl: './invoice-form.component.css'
 })
@@ -24,11 +31,14 @@ export class InvoiceFormComponent implements OnInit{
     { value: 14, label: 'Net 14 Day' },
     { value: 30, label: 'Net 30 Day' },
     ];
+    isNewForm!:boolean;
+    invoiceData$!: Observable<LoadDataInterface | undefined>;
 
   constructor (
     private fb: FormBuilder,
     private store: Store<AppState>,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {
   };
   
@@ -49,13 +59,86 @@ export class InvoiceFormComponent implements OnInit{
         country: ['', Validators.required],
       }),
       createdAt: ['', Validators.required],
-      paymentDue: ['', Validators.required],
+      paymentTerms: ['', Validators.required],
       description: ['', Validators.required],
       // status: ['', Validators.required],
       items: this.fb.array([]),
   
     })
+
+    this.isNewForm = true;
+    // this.activatedRoute.paramMap.subscribe(val => console.log(val));
+
+    // this.activatedRoute.paramMap.subscribe(
+    //   val => {
+    //     const d = val.get('form');
+    //     console.log(d);
+    //   }
+    // )
+
+    // this.activatedRoute.params.subscribe(params => {
+    //   // Access the route parameters directly from the params object
+    //   const id = params;
+    //   console.log('Route parameter id:', id);
+    // });
+
+        // Access route path segments
+        const routeSnapshot = this.activatedRoute.snapshot;
+        const routePath = routeSnapshot.url.map(segment => segment.path).join('/');
+        
+        if (routePath === 'new-form') {
+          this.isNewForm = true;
+        } else {
+          this.isNewForm = false;
+          this.invoiceData$ = this.store.select(selectInvoice);
+
+          this.invoiceData$.subscribe(data => {
+            if (data) {
+              this.patchFormWithData(data);
+            }
+          })
+
+        }
+
     
+    
+  }
+
+
+  patchFormWithData(data: any) {
+    this.form.patchValue({
+      senderAddress: {
+        street: data.senderAddress.street,
+        city: data.senderAddress.city,
+        postCode: data.senderAddress.postCode,
+        country: data.senderAddress.country,
+      },
+      clientAddress: {
+        name: data.clientName,
+        email: data.clientEmail,
+        street: data.clientAddress.street,
+        city: data.clientAddress.city,
+        postCode: data.clientAddress.postCode,
+        country: data.clientAddress.country,
+      },
+      createdAt: data.createdAt,
+      paymentTerms: data.paymentTerms,
+      description: data.description,
+    });
+
+    // Clear existing items
+    (this.form.get('items') as FormArray).clear();
+
+    // Add items to the form array
+    data.items.forEach((item: any) => {
+      const itemGroup = this.fb.group({
+        name: [item.name, Validators.required],
+        quantity: [item.quantity, Validators.required],
+        price: [item.price, Validators.required],
+        total: [item.total],
+      });
+      (this.form.get('items') as FormArray).push(itemGroup);
+    });
   }
 
   get itemsFormArray() {
@@ -86,6 +169,7 @@ export class InvoiceFormComponent implements OnInit{
     const total = this.calculateTotalSum(formData.items, 'total')
     // console.log(total);
 
+    // CALCULATE AND ADD PAYMENT DUE
     const invoice = {
       id,
       clientAddress,
@@ -106,6 +190,28 @@ export class InvoiceFormComponent implements OnInit{
 
   calculateTotalSum<T>(data: T[], key: keyof T): number {
     return data.reduce((accumulator, item) => accumulator + (item[key] as unknown as number), 0);
+  }
+
+  saveEditedChanges () {
+    const {clientAddress: { name: clientName, email: clientEmail, ...clientAddress }, ...formData} = this.form.value;
+
+    const total = this.calculateTotalSum(formData.items, 'total')
+    console.log(total);
+
+    // CALCULATE AND ADD PAYMENT DUE
+    const invoice = {
+      // id,
+      clientAddress,
+      clientName,
+      clientEmail,
+      ...formData,
+      // status: 'paid',
+      total,
+    }
+
+    // console.log('current data: ', invoice);
+    
+    // this.store.dispatch(updateInvoice({invoice}));
   }
   
 

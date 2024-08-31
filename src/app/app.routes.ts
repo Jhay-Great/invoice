@@ -15,14 +15,27 @@ export const routes: Routes = [
         path: '',
         children: [
             {
-                path: 'form',
+                path: 'new-form',
                 component: InvoiceFormComponent,
-            }
+            },
+            // {
+            //     path: 'edit-form',
+            //     component: InvoiceFormComponent,
+            // },
         ]
     },
     {
-        path: 'invoice/:id',
+        path: 'invoice',
         component: InvoiceDetailPageComponent,
         title: 'Invoice',
+    },
+    {
+        path: 'invoice',
+        children: [
+            {
+                path: 'edit-form',
+                component: InvoiceFormComponent,
+            },
+        ]
     }
 ];
