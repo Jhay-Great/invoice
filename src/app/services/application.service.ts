@@ -22,18 +22,19 @@ export class ApplicationService {
     this.invoiceIdSubject$.next(id);
    }
 
-   displayModal (state:boolean) {
+   toggleModal (state:boolean) {
     this.deleteModalSubject$.next(state);
    }
 
    displayDeleteModal (id:string) {
     //  this.isDeleteModalActive = true;
-    this.displayModal(true);
+    this.toggleModal(true);
      this.setInvoiceId(id);
    }
 
    removeDeleteModal () {
-    this.isDeleteModalActive = false;
+    this.toggleModal(false);
+    // this.isDeleteModalActive = false;
   }
   
 

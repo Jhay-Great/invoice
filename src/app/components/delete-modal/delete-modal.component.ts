@@ -16,11 +16,11 @@ export class DeleteModalComponent {
     private applicationService: ApplicationService,
   ) {};
 
-  cancelDelete () {
+  cancelDeletion () {
     this.applicationService.removeDeleteModal();
   }
 
-  confirmDelete () {
+  confirmDeletion () {
     this.applicationService.removeDeleteModal();
   }
 
