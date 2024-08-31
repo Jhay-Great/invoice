@@ -10,6 +10,7 @@ export class ApplicationService {
   private deleteModalSubject$ = new BehaviorSubject<boolean>(false);
   isModalActive:Observable<boolean> = this.deleteModalSubject$.asObservable();
 
+  id!:string;
   private invoiceIdSubject$ = new BehaviorSubject<string>('');
   invoiceId:Observable<string> = this.invoiceIdSubject$.asObservable();
   
@@ -19,6 +20,7 @@ export class ApplicationService {
    }
 
    setInvoiceId(id:string) {
+    this.id = id;
     this.invoiceIdSubject$.next(id);
    }
 
