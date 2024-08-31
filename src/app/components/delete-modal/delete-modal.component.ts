@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ApplicationService } from '../../services/application.service';
 
 @Component({
   selector: 'app-delete-modal',
@@ -10,5 +11,19 @@ import { Component, Input } from '@angular/core';
 export class DeleteModalComponent {
 
   invoiceId!:string;
+
+  constructor (
+    private applicationService: ApplicationService,
+  ) {};
+
+  cancelDelete () {
+    this.applicationService.removeDeleteModal();
+  }
+
+  confirmDelete () {
+    this.applicationService.removeDeleteModal();
+  }
+
+
 
 }

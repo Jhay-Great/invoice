@@ -8,6 +8,7 @@ import { Observable, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { GoBackComponent } from '../../components/go-back/go-back.component';
 import { confirmDelete, deleteInvoice } from '../../state/invoice/actions/loadData.action';
+import { ApplicationService } from '../../services/application.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class InvoiceDetailPageComponent implements OnInit {
   constructor (
     private activatedRoute: ActivatedRoute,
     private store: Store<AppState>,
+    private applicationService: ApplicationService,
   ) {};
 
   ngOnInit(): void {
@@ -38,7 +40,8 @@ export class InvoiceDetailPageComponent implements OnInit {
     console.log('..edit');
   }
   delete (id:string) {
-    this.store.dispatch(confirmDelete({id}));
+    this.applicationService.displayDeleteModal(id);
+    // this.store.dispatch(confirmDelete({id}));
     // this.store.dispatch(deleteInvoice({id}));
   }
   markAsPaid () {
