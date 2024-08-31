@@ -164,9 +164,26 @@
         width: initial;
         height: initial;
         padding: initial;
+        gap: 1rem;
     }
     .invoice-details {
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
+    }
+    .status-container {
+        width: fit-content;
+    }
+    .basic-info > div:first-child {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+    
+    .basic-info > div:nth-child(2) {
+        grid-template-columns: repeat(3, 1fr);
+        
+        
     }
 }

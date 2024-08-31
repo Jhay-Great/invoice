@@ -1,6 +1,10 @@
 <!-- app banner -->
 <app-app-banner />
 
+@if (isDeleteModalActive | async) {
+    <app-delete-modal />
+}
+
 <!-- <app-invoice-page /> -->
 
 <!-- <app-invoice-form /> -->

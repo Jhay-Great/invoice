@@ -35,6 +35,11 @@ export const addInvoice = createAction(
     '[Invoice API] Update Invoice',
     props<{ invoice: LoadDataInterface }>()
   );
+
+  export const confirmDelete = createAction(
+    '[Invoice API] Confirm delete',
+    props<{id: string}>(),
+  )
   
   export const deleteInvoice = createAction(
     '[Invoice API] Delete Invoice',
