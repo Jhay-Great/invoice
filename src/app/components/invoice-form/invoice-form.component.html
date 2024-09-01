@@ -148,7 +148,7 @@
       <h3 class="sub-title"> Items </h3>
       <div class="item-container" formArrayName="items">
           @for (form of itemsFormArray.controls; track $index) {
-              <fieldset class="invoice-terms" [formGroupName]="$index">
+              <fieldset class="invoice-items" [formGroupName]="$index">
                   <div class="item-name-container">
                     <label for="item-name_{{$index}}">Item name</label>
                     <input
@@ -345,7 +345,7 @@
       <h3 class="sub-title"> Items </h3>
       <div class="item-container" formArrayName="items">
           @for (form of itemsFormArray.controls; track $index) {
-              <fieldset class="invoice-terms" [formGroupName]="$index">
+              <fieldset class="invoice-items" [formGroupName]="$index">
                   <div class="item-name-container">
                     <label for="item-name_{{$index}}">Item name</label>
                     <input

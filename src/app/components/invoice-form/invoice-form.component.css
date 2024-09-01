@@ -3,10 +3,12 @@
     height: 100%;
     background-color: #fff;
     border-color: transparent;
-    padding: 2rem;
+    padding: 2rem 0 0;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .title {
@@ -21,7 +23,7 @@ form {
 fieldset {
     border: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
     gap: 1rem;
 }
@@ -29,6 +31,49 @@ legend {
     color: var(--color-purple);
     font-size: var(--font-size-body);
     margin-block-end: 1.5rem;
+}
+.street-address-container,
+.country-container,
+.client-name-container,
+.client-email-container,
+.invoice-terms > div,
+.item-name-container {
+    grid-column: 1 / -1;
+}
+label {
+    color: var(--color-light-blue-darker);
+    font-size: var(--font-size-body);
+    margin-block-end: .7rem;
+    display: block;
+}
+
+fieldset input {
+    width: 100%;
+}
+.invoice-items {
+    grid-template-columns: repeat(3, 1fr);
+}
+.add-new-item {
+    width: 100%;
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 1.5rem;
+    font-weight: 600;
+    font-size: var(--font-size-body);
+    color: var(--color-light-blue-darker);
+    background: var(--color-white-shade-2);
+}
+.submission-btns {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background: white;
+    box-shadow: 0px -10px 40px 4px #0003;
+    padding: 0 1.5rem;
 }
 
 @media screen and (min-width: 580px) {
