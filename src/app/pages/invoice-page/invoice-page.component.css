@@ -13,7 +13,8 @@ header,
 }
 .status,
 .name,
-.date {
+.date,
+.hash {
     color: var(--color-light-blue);
 }
 .title, .id, .price, .filter {
@@ -161,4 +162,13 @@ article {
         justify-content: space-between;
         align-items: center;
     }
+    
+.invoice > * {
+    flex: 1;
+}
+
+.price {
+    display: flex;
+    justify-content: flex-end;
+}
 }

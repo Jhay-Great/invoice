@@ -55,11 +55,11 @@
             <div class="invoice font-size-body" [routerLink]=" 'invoice' " (click)="handleSelectedInvoice(invoice.id)">
                 <!-- id -->
                 <p class="id">
-                    {{ invoice.id }}
+                    <span class="hash">#</span>{{ invoice.id }}
                 </p>
                 <!-- date -->
                 <p class="date">
-                    {{ invoice.createdAt}}
+                    <span>Due</span> {{ invoice.paymentDue | date: 'dd MMM yyyy'}}
                 </p>
                 <!-- name -->
                 <p class="name">
@@ -67,7 +67,7 @@
                 </p>
                 <!-- price -->
                 <p class="price font-size-h3">
-                    {{ invoice.paymentTerms}}
+                    {{ invoice.total | currency: 'GBP' : 'symbol' : '1.2-2' }}
                 </p>
                 <!-- status -->
                 <div class="status-container">

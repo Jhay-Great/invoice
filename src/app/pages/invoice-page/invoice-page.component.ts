@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AsyncPipe } from '@angular/common';
+import { CommonModule, } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 // local module imports
@@ -15,7 +15,7 @@ import { detailedInvoice, filterInvoice } from '../../state/invoice/actions/load
 @Component({
   selector: 'app-invoice-page',
   standalone: true,
-  imports: [ AsyncPipe, RouterLink],
+  imports: [  CommonModule, RouterLink],
   templateUrl: './invoice-page.component.html',
   styleUrl: './invoice-page.component.css'
 })
