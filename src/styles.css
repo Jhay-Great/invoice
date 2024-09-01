@@ -127,6 +127,7 @@ app-invoice-page {
 }
     app-invoice-page {
         overflow-y: scroll;
+        scrollbar-width: none;
 
     }
     .for-large-screens {
