@@ -65,7 +65,7 @@ export const loadDataReducer = createReducer(
   on(loadDataOnSuccess, (state, { data }) =>
     invoiceAdapter.setAll(data, { ...state, loading: true })
   ),
-  // on(loadDataOnSuccess, (state, { data }) => invoiceAdapter.setAll(data, {...state})),
+  
   on(loadDataOnFailure, (state, { error }) => ({ ...state, error })),
   on(filterInvoice, (state, { filterCriteria }) =>
     // console.log(filterCriteria),

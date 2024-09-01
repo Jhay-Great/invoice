@@ -171,7 +171,6 @@ export class InvoiceFormComponent implements OnInit{
     const {clientAddress: { name: clientName, email: clientEmail, ...clientAddress }, ...formData} = this.form.value;
 
     const total = this.calculateTotalSum(formData.items, 'total')
-    // console.log(total);
 
     // CALCULATE AND ADD PAYMENT DUE
     const invoice = {
@@ -183,8 +182,7 @@ export class InvoiceFormComponent implements OnInit{
       status: 'paid',
       total,
     }
-    // console.log('Dispatching addInvoice with:', invoice);
-    // console.log(invoice);
+    
     this.store.dispatch(addInvoice({invoice}));
     this.router.navigate([''])
 
@@ -212,10 +210,7 @@ export class InvoiceFormComponent implements OnInit{
       status: 'paid',
       total,
     }
-
-    // console.log('current data: ', invoice);
     
-    // this.store.dispatch(updateInvoice({invoice}));
     this.store.dispatch(updateInvoice({invoice: {
       id: this.invoiceId,
       changes: invoice,
