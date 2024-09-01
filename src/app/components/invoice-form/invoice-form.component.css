@@ -41,7 +41,7 @@ fieldset {
     grid-auto-rows: auto;
     gap: 1rem;
     width: 90%;
-    margin: auto;
+    margin: auto auto 3rem;
 }
 legend {
     color: var(--color-purple);
