@@ -10,12 +10,13 @@ import { AppState } from '../../interfaces/AppState.interface';
 // import { detailedInvoice, filterInvoice, } from '../../state/invoice/actions/filterInvoice.action';
 // import { selectFilterFeature } from '../../state/invoice/selectors/filterInvoice.selector';
 import { detailedInvoice, filterInvoice } from '../../state/invoice/actions/loadData.action';
+import { StatusComponent } from '../../components/status/status.component';
 
 
 @Component({
   selector: 'app-invoice-page',
   standalone: true,
-  imports: [  CommonModule, RouterLink],
+  imports: [  CommonModule, RouterLink, StatusComponent ],
   templateUrl: './invoice-page.component.html',
   styleUrl: './invoice-page.component.css'
 })

@@ -70,14 +70,17 @@
                     {{ invoice.total | currency: 'GBP' : 'symbol' : '1.2-2' }}
                 </p>
                 <!-- status -->
-                <div class="status-container">
+                <app-status 
+                    [status]="invoice.status"
+                />
+                <!-- <div class="status-container">
                     <div>
                         <div class="ellipsis"></div>
                         <p class="status">
                             {{ invoice.status }}
                         </p>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         }
