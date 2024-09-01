@@ -25,6 +25,12 @@
     --color-white: #FFF;
     --color-white-shade: #F8F8FB; /*(Light BG) */
     --color-white-shade-2: #F9FAFE;
+    --color-orange: #FF8F00;
+
+    --status-paid-bg: #33d6a024;
+    --status-pending-bg: #FF8F0024;
+    --status-draft-bg: #373B5324;
+    
 
     /* FONTS */
     --font-size-h1: 32px;
