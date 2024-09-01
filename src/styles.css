@@ -60,6 +60,7 @@ app-root {
     /* background-color: #373B53; */
     display: flex;
     flex-direction: column;
+    height: fit-content;
 }
 
 /* app-root > :is(:nth-child(3)) { */

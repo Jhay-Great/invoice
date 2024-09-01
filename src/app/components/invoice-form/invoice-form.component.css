@@ -25,10 +25,12 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    gap: 2.5rem;
 }
 .input-fields {
-    padding: 2rem;
+    /* padding: 2rem; */
     height: 600px;
+    height: 500px;
     overflow-y: scroll;
     scrollbar-width: none;
 }
@@ -92,6 +94,8 @@ label {
     font-size: var(--font-size-body);
     color: var(--color-light-blue-darker);
     background: var(--color-white-shade-2);
+    display: block;
+    margin-top: 2rem;
 }
 .submission-btns {
     /* position: absolute; */
