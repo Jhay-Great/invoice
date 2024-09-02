@@ -3,7 +3,7 @@
     <section class="page-title">
         <h1 class="title">Invoice</h1>
         <p class="status">
-            <span class="for-large-screens">There are</span> 7 <span class="for-large-screens">total</span> invoices
+            <span class="for-large-screens">There are</span> {{ (data | async)?.length }} <span class="for-large-screens">total</span> invoices
         </p>
     </section>
 
