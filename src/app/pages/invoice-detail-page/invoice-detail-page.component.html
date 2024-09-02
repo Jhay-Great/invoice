@@ -98,14 +98,14 @@
               <p class="price-calc">{{ item.quantity }} x {{ item.price | currency:'GBP':'symbol' }}</p>
             </div>
             <div class="item-total-price">
-              <p>{{ item.total }}</p>
+              <p>{{ item.total | currency:'GBP':'symbol' }}</p>
             </div>
           </div>
         }
   
         <div class="grand-total">
           <p>Grand Total</p>
-          <p>{{ invoice.total }}</p>
+          <p>{{ invoice.total | currency:'GBP':'symbol' }}</p>
         </div>
       </section>
     </section>
