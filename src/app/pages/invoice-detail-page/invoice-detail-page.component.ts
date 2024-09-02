@@ -9,12 +9,13 @@ import { CommonModule } from '@angular/common';
 import { GoBackComponent } from '../../components/go-back/go-back.component';
 import { confirmDelete, deleteInvoice } from '../../state/invoice/actions/loadData.action';
 import { ApplicationService } from '../../services/application.service';
+import { StatusComponent } from "../../components/status/status.component";
 
 
 @Component({
   selector: 'app-invoice-detail-page',
   standalone: true,
-  imports: [ CommonModule, RouterLink, GoBackComponent, ],
+  imports: [CommonModule, RouterLink, GoBackComponent, StatusComponent],
   templateUrl: './invoice-detail-page.component.html',
   styleUrl: './invoice-detail-page.component.css'
 })
