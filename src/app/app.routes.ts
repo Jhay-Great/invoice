@@ -7,7 +7,7 @@ export const routes: Routes = [
         title: 'Invoices'
     },
     {
-        path: '/:id',
+        path: ':id',
         loadComponent: () => import('./pages/invoice-detail/invoice-detail.component').then(d => d.InvoiceDetailComponent),
         title: 'Invoice',
     }

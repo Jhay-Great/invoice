@@ -1,0 +1,47 @@
+.container {
+    width: min(730px, 90%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+.filter-text {
+    font-size: var(--font-size-h4);
+    font-weight: bold;
+}
+
+.details h1, h2 {
+    font-size: var(--font-size-h1);
+    color: var(--secondary-color-dark);
+    font-weight: bold;
+}
+
+.description, .empty-message-description {
+    font-size: var(--font-size-h4);
+    color: var(--primary-color-faded);
+}
+
+.invoice-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
