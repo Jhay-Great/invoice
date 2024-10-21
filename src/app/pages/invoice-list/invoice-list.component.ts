@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IInvoice } from '../../core/interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoice-list',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './invoice-list.component.css'
 })
 export class InvoiceListComponent implements OnInit {
-  invoice: any[] = [];
+  invoice: IInvoice[] = [];
 
   constructor () {};
 
