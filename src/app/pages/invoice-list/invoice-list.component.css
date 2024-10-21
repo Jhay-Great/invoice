@@ -90,6 +90,16 @@ button span img {
     gap: 1rem;
     overflow-y: scroll;
     align-items: center;
-    padding-top: 5rem;
+    padding-top: 3rem;
     scrollbar-width: none;
+}
+
+.empty {
+    pointer-events: none;
+}
+
+app-invoice-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
 }

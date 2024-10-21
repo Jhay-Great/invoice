@@ -6,7 +6,11 @@
         <section class="details">
             <h1>Invoice</h1>
             <p class="description">
-                No invoice
+                @if ((invoice$ | async)?.length === 0) {
+                    No invoice
+                } @else {
+                    There are {{ (invoice$ | async)?.length }} total invoices
+                }
             </p>
         </section>
     
@@ -32,7 +36,7 @@
     </nav>
     
     <section class="invoice-list">
-        @if((invoice$ | async)?.length !== 0) {
+        @if((invoice$ | async)?.length === 0) {
             <section class="empty">
                 <img src="../../../assets/svgs/illustration-empty.svg" alt="svg image indicating no invoice to be display">
     

@@ -1,0 +1,24 @@
+<!-- id -->
+<p class="invoice-id">
+    {{ invoice.id }}
+</p>
+
+<!-- date -->
+<p class="invoice-date">
+    Due {{ invoice.createdAt | date:'dd MMM yyyy' }}
+</p>
+
+<!-- name -->
+<p class="client-name">
+    {{ invoice.clientName}}
+</p>
+
+<!-- amount -->
+<p class="amount">
+    {{ invoice.total | currency }}
+</p>
+
+<!-- status -->
+<p class="status">
+    {{ invoice.status }}
+</p>
