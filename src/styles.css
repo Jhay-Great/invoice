@@ -19,6 +19,9 @@
     --bg-light: #F8F8FB;
     --dark-color: #141625;
 
+    /* universal colors */
+    --color-white: #FFF;
+
     --font-size-h1: 32px;
     --font-size-h2: 20px;
     --font-size-h3: 16px; 
@@ -57,4 +60,9 @@ app-invoice-list {
 /* removes router outlet tag */
 router-outlet {
     display: none;
+}
+
+/* default styles */
+button {
+    cursor: pointer;
 }
