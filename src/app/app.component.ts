@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "./feature/sidebar/sidebar.component";
+import { Store } from '@ngrx/store';
+import { AppState } from './core/state/state.interface';
+import { loadInvoice } from './core/state/invoice/invoice.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +12,14 @@ import { SidebarComponent } from "./feature/sidebar/sidebar.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'ngrx-invoice-app';
 
-  constructor () {};
+  constructor (
+    private store: Store<AppState>
+  ) {};
+
+  ngOnInit(): void {
+    this.store.dispatch(loadInvoice())
+  }
 }
