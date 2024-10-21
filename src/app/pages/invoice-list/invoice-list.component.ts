@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-invoice-list',
@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './invoice-list.component.html',
   styleUrl: './invoice-list.component.css'
 })
-export class InvoiceListComponent {
+export class InvoiceListComponent implements OnInit {
+  invoice: any[] = [];
+
+  constructor () {};
+
+  ngOnInit ():void {
+    // fetch data from service
+  }
+
 
 }
