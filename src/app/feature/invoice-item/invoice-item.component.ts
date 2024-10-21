@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IInvoice } from '../../core/interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoice-item',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './invoice-item.component.css'
 })
 export class InvoiceItemComponent {
+  @Input ({required: true}) invoice!:IInvoice;
 
 }

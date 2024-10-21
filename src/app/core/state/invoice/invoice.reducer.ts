@@ -12,6 +12,6 @@ const initialInvoice:IInvoiceState = {
 export const invoiceReducer = createReducer(
     initialInvoice,
     on(loadInvoice, (state) => state),
-    on(loadInvoiceSuccess, (state, {invoice}) => ({...state, invoice, loading: false})),
+    on(loadInvoiceSuccess, (state, {invoice}) => (console.log(invoice), {...state, invoice, loading: false})),
     on(loadInvoiceFail, (state, {error}) => ({...state, error, loading: false}))
 )

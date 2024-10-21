@@ -32,17 +32,28 @@
     </nav>
     
     <section class="invoice-list">
-        <section class="empty">
-            <img src="../../../assets/svgs/illustration-empty.svg" alt="svg image indicating no invoice to be display">
+        @if((invoice$ | async)?.length !== 0) {
+            <section class="empty">
+                <img src="../../../assets/svgs/illustration-empty.svg" alt="svg image indicating no invoice to be display">
+    
+                <h2>
+                    There is nothing here
+                </h2>
+    
+                <p class="empty-message-description">
+                    Create an invoice by clicking the <span>New Invoice</span> button and get started
+                </p>
+            </section>
 
-            <h2>
-                There is nothing here
-            </h2>
-
-            <p class="empty-message-description">
-                Create an invoice by clicking the <span>New Invoice</span> button and get started
-            </p>
-        </section>
+        }@else {
+            <section class="invoice-container">
+                @for (invoice of invoice$ | async; track $index) {
+                    <app-invoice-item 
+                        [invoice]="invoice"
+                    />
+                }
+            </section>
+        }
     </section>
 
 </div>
