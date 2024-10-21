@@ -33,3 +33,9 @@ export interface IItems {
     price: number;
     total: number;
 }
+
+export interface IInvoiceState {
+    invoice: IInvoice[];
+    loading: boolean;
+    error: string | null;
+}

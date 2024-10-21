@@ -11,4 +11,6 @@ import { SidebarComponent } from "./feature/sidebar/sidebar.component";
 })
 export class AppComponent {
   title = 'ngrx-invoice-app';
+
+  constructor () {};
 }
