@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+/* imported font spartan */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+/* css variables */
+:root {
+    --primary-color: #7C5DFA;
+    --primary-color-light: #9277FF;
+    --primary-color-lighter: #7E88C3;
+    --primary-color-faded: #888EB0;
+    --primary-color-lightest: #DFE3FA;
+    
+    --secondary-color: #1E2139;
+    --secondary-color-light: #252945;
+    --secondary-color-dark: #0C0E16;
+
+    --red-color: #EC5757;
+    --red-color-light: #FF9797;
+
+    --bg-light: #F8F8FB;
+    --dark-color: #141625;
+
+    --font-size-h1: 32px;
+    --font-size-h2: 20px;
+    --font-size-h3: 16px; 
+    --font-size-h4: 12px; 
+    --font-size-xs: 11px;
+}
