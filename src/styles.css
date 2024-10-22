@@ -1,5 +1,6 @@
 /* imported font spartan */
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import "primeng/resources/primeng.css";
 
 /* css variables */
 :root {
@@ -93,6 +94,7 @@ app-invoice-form {
     height: 100%;
     display: flex;
     justify-content: flex-start;
+    z-index: 30;
 }
 
 /* removes router outlet tag */

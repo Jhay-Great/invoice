@@ -5,13 +5,13 @@
     </header>
     
     
-    <form [formGroup]="invoiceForm">
+    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
         <section>
             <fieldset formGroupName="senderAddress">
-                <legend>Bill to</legend>
+                <legend>Bill From</legend>
                 <div class="sender-address">
-                    <label for="address">
-                        Sender Address
+                    <label for="street-address">
+                        Street Address
                     </label>
                     <input type="text" formControlName="street" id="address">
                 </div>
@@ -20,9 +20,97 @@
                     <input type="text" formControlName="city" id="city">
                 </div>
                 <div class="post-code">
-                    
+                    <label for="post-code">Post Code</label>
+                    <input type="text" formControlName="postCode" id="post-code">
+                </div>
+                <div class="country">
+                    <label for="post-code">Country</label>
+                    <input type="text" formControlName="country" id="country">
                 </div>
             </fieldset>
+        </section>
+        
+        <section>
+            <fieldset formGroupName="clientAddress">
+                <legend>Bill to</legend>
+                <div class="client-name">
+                    <label for="client-name">
+                        Client's Name
+                    </label>
+                    <input type="text" formControlName="clientName" id="client-name">
+                </div>
+                <div class="client-email">
+                    <label for="client-email">
+                        Client's Email
+                    </label>
+                    <input type="text" formControlName="clientEmail" id="client-email">
+                </div>
+                <div class="street-address">
+                    <label for="street-address">
+                        Street Address
+                    </label>
+                    <input type="text" formControlName="street" id="address">
+                </div>
+                <div class="city">
+                    <label for="city">City</label>
+                    <input type="text" formControlName="city" id="city">
+                </div>
+                <div class="post-code">
+                    <label for="post-code">Post Code</label>
+                    <input type="text" formControlName="postCode" id="post-code">
+                </div>
+                <div class="country">
+                    <label for="post-code">Country</label>
+                    <input type="text" formControlName="country" id="country">
+                </div>
+            </fieldset>
+        </section>
+
+        <section>
+            <div class="created-at">
+                <label for="created-at">Invoice Date</label>
+                <!-- primeng -->
+            </div>
+            <div class="payment-date">
+                <label for="payment-due"></label>
+                <!-- primeng -->
+            </div>
+            <div class="description">
+                <label for="description">Project description</label>
+                <input type="text" formControlName="description" id="description">
+            </div>
+        </section>
+
+        <section class="items">
+            <h2>Items</h2>
+            <div class="item-headers">
+                <p>Item Name</p>
+                <p>Qty.</p>
+                <p>Price</p>
+                <p>Total</p>
+
+            </div>
+            <div class="item-list-container" formArrayName="items">
+                @for (item of items.controls; track $index) {
+                    <div class="item-list" [formGroupName]="$index">
+                        <input type="text" formControlName="name">
+                        <input type="number" formControlName="quantity">
+                        <input type="number" formControlName="price">
+                        <input type="number" formControlName="total">
+                        <button class="remove-item" (click)="removeItem($index)">
+                            <img src="../../../assets/svgs/icon-delete.svg" alt="delete svg icon for delete items in form">
+
+                        </button>
+                    </div>
+                }
+            </div>
+            <button type="button" (click)="addItems()">+ Add New Item</button>
+        </section>
+
+        <section class="btns">
+            <button type="button" class="discard">Discard</button>
+            <button type="button" class="save-as-draft">Save as Draft</button>
+            <button type="submit" class="save_send">Save & Send</button>
         </section>
     
     </form>
