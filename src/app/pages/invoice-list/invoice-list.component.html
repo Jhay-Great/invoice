@@ -24,20 +24,20 @@
 
                 <!-- dropdown menu -->
                 @if (dropdownIsActive) {
-                    <section class="filter-dropdown">
+                    <form class="filter-dropdown" (click)="handleFilterOptions($event)">
                         <div class="draft-container">
-                            <input type="checkbox" name="draft" id="draft">
+                            <input type="checkbox" name="draft" id="draft" #draft>
                             <label for="draft">Draft</label>
                         </div>
                         <div class="pending-container">
-                            <input type="checkbox" name="pending" id="pending">
+                            <input type="checkbox" name="pending" id="pending" #pending>
                             <label for="pending">Pending</label>
                         </div>
                         <div class="paid-container">
-                            <input type="checkbox" name="paid" id="paid">
+                            <input type="checkbox" name="paid" id="paid" #paid>
                             <label for="paid">Paid</label>
                         </div>
-                    </section>
+                    </form>
                 }
             </div>
 

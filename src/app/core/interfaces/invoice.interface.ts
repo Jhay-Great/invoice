@@ -36,6 +36,11 @@ export interface IItems {
 
 export interface IInvoiceState {
     invoice: IInvoice[];
+    filterBy: IFilter,
     loading: boolean;
     error: string | null;
 }
+// filter interface
+export interface IFilter {
+    [key:string]: boolean; //index signature
+  }
