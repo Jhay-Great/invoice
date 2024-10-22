@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { v4 as uuid } from 'uuid'
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,11 @@ export class ApplicationService {
 
   formVisibility () {
     return this.isFormVisible;
+  }
+
+  generateId ():string {
+    const id = uuid();
+    return id.slice(0, 6);
   }
 
 
