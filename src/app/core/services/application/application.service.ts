@@ -10,8 +10,9 @@ export class ApplicationService {
   private deleteSubject = new BehaviorSubject<string | null>(this.deleteId);
   private deleteId$ = this.deleteSubject.asObservable();
 
+  isFormVisible:boolean = false;
   private formVisibilitySubject = new BehaviorSubject<boolean>(false);
-  private isFormVisible = this.formVisibilitySubject.asObservable();
+  private isFormVisible$ = this.formVisibilitySubject.asObservable();
 
   constructor() { }
 
@@ -26,11 +27,14 @@ export class ApplicationService {
   }
 
   toggleFormVisibility (status:boolean): void {
-    this.formVisibilitySubject.next(status);
+    this.isFormVisible = status;
+    this.formVisibilitySubject.next(this.isFormVisible);
+    console.log(this.isFormVisible)
+
   }
 
   formVisibility () {
-    return this.isFormVisible;
+    return this.isFormVisible$;
   }
 
   generateId ():string {

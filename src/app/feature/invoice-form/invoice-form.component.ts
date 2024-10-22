@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ApplicationService } from '../../core/services/application/application.service';
 
 @Component({
   selector: 'app-invoice-form',
@@ -13,6 +14,7 @@ export class InvoiceFormComponent implements OnInit {
 
   constructor (
     private fb:FormBuilder,
+    private appService: ApplicationService,
   ) {};
 
   ngOnInit(): void {
@@ -37,6 +39,11 @@ export class InvoiceFormComponent implements OnInit {
       description: ['', Validators.required],
       items: this.fb.array([]),
     })
+  }
+
+  discard () {
+    this.appService.toggleFormVisibility(false);
+    console.log('clicked...')
   }
 
 
