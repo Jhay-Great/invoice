@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 // local imports
 import { AppState } from '../../core/state/state.interface';
@@ -17,7 +18,7 @@ type filterOptions = { name: string, checked: boolean };
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [AsyncPipe, InvoiceItemComponent],
+  imports: [AsyncPipe, RouterLink, InvoiceItemComponent],
   templateUrl: './invoice-list.component.html',
   styleUrl: './invoice-list.component.css'
 })

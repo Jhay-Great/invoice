@@ -73,6 +73,7 @@
                 @for (invoice of invoice$ | async; track $index) {
                     <app-invoice-item 
                         [invoice]="invoice"
+                        [routerLink]="['', invoice.id]"
                     />
                 }
             </section>
