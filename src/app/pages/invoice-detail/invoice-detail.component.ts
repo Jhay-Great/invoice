@@ -6,7 +6,7 @@ import { map, Observable, Subscription, take } from 'rxjs';
 import { selectInvoiceById } from '../../core/state/invoice/invoice.selector';
 import { IInvoice } from '../../core/interfaces/invoice.interface';
 import { AsyncPipe, DatePipe, CurrencyPipe } from '@angular/common';
-import { markInvoiceAsPaid } from '../../core/state/invoice/invoice.actions';
+import { deleteInvoice, markInvoiceAsPaid } from '../../core/state/invoice/invoice.actions';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -48,7 +48,8 @@ export class InvoiceDetailComponent implements OnInit {
 
   deleteInvoice (id:string) {
     console.log(id);
-    // this.store.dispatch();
+    this.store.dispatch(deleteInvoice({id}));
+    this.router.navigate(['/']); // routes to home page after deletion;
   }
 
   markAsPaid (id:string) {
