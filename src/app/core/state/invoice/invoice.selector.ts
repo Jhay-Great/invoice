@@ -28,6 +28,16 @@ export const selectAllInvoice = createSelector(
     }
 )
 
+export const selectInvoiceById = (id:string) => createSelector(
+        invoiceSelector,
+        (invoice) => {
+            const searchInvoice = invoice.invoice.filter(data => data.id === id);
+            console.log(searchInvoice);
+            return searchInvoice;
+        }
+    )
+
+
 
 
 

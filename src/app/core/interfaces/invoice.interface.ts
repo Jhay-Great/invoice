@@ -7,8 +7,8 @@ export interface IInvoice {
     clientName: string;
     clientEmail: string;
     status: string;
-    senderAddress: ISenderAddress[];
-    clientAddress: IClientAddress[];
+    senderAddress: ISenderAddress;
+    clientAddress: IClientAddress;
     items: IItems[];
     total: number;
 }
