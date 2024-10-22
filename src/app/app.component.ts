@@ -4,11 +4,12 @@ import { SidebarComponent } from "./feature/sidebar/sidebar.component";
 import { Store } from '@ngrx/store';
 import { AppState } from './core/state/state.interface';
 import { loadInvoice } from './core/state/invoice/invoice.actions';
+import { DeleteModalComponent } from "./feature/delete-modal/delete-modal.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent, DeleteModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
