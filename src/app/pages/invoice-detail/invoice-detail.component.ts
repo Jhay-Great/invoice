@@ -6,6 +6,7 @@ import { map, Observable, Subscription, take } from 'rxjs';
 import { selectInvoiceById } from '../../core/state/invoice/invoice.selector';
 import { IInvoice } from '../../core/interfaces/invoice.interface';
 import { AsyncPipe, DatePipe, CurrencyPipe } from '@angular/common';
+import { markInvoiceAsPaid } from '../../core/state/invoice/invoice.actions';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -38,11 +39,20 @@ export class InvoiceDetailComponent implements OnInit {
       // console.log(this.invoiceData);
       this.invoiceData$.subscribe(value => console.log(value));
     }
-    //   {
-    //   next: params => this.invoiceData = this.store.select(selectInvoiceById(params)),
-    //   error: error: => this.errorMessage = 'Item not found'
-    // }
   );
+  }
+
+  editInvoice () {
+    console.log('under construction');
+  }
+
+  deleteInvoice (id:string) {
+    console.log(id);
+    // this.store.dispatch();
+  }
+
+  markAsPaid (id:string) {
+    this.store.dispatch(markInvoiceAsPaid({id}))
   }
 
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { filterAction, loadInvoice, loadInvoiceFail, loadInvoiceSuccess } from "./invoice.actions";
+import { deleteInvoice, filterAction, loadInvoice, loadInvoiceFail, loadInvoiceSuccess, markInvoiceAsPaid } from "./invoice.actions";
 import { IInvoiceState } from "../../interfaces/invoice.interface";
 
 // initial data
@@ -15,5 +15,30 @@ export const invoiceReducer = createReducer(
     on(loadInvoice, (state) => state),
     on(loadInvoiceSuccess, (state, {invoice}) => (console.log(invoice), {...state, invoice, loading: false})),
     on(loadInvoiceFail, (state, {error}) => ({...state, error, loading: false})),
-    on(filterAction,  (state, { filter }) => ({...state, filterBy: {...filter}}))
+    on(filterAction,  (state, { filter }) => ({...state, filterBy: {...filter}})),
+    on(deleteInvoice, (state, { id }) => {
+        const data = state.invoice.filter(invoice => invoice.id !== id);
+        console.log('updated invoice data after deletion: ', data);
+        return {
+            ...state,
+            invoice: data,
+        }
+    }),
+    on(markInvoiceAsPaid, (state, { id }) => {
+        const invoice = state.invoice.find(invoice => invoice.id === id);
+        if (!invoice) return state;
+        const updatedInvoice = {...invoice, status: 'paid'};
+        // console.log('updated invoice: ', updatedInvoice);
+        // console.log('current state data: ', state);
+
+        const stateUpdate = state.invoice.filter(invoiceData => invoiceData.id!== id);
+        const currentInvoiceData = [updatedInvoice, ...stateUpdate]
+        console.log('final update: ', currentInvoiceData);
+        return {
+            ...state,
+            invoice: currentInvoiceData
+        }
+
+        // return state;
+    })
 )

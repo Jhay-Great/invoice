@@ -16,3 +16,15 @@ export const filterAction = createAction(
     '[filter Invoice Api] Filters invoice data',
     props<{filter: IFilter}>()
 )
+
+// CRUD operations
+export const deleteInvoice = createAction(
+    '[Invoice Api] Deletes invoice',
+    props<{ id: string }>(),
+)
+
+// mark as paid
+export const markInvoiceAsPaid = createAction(
+    '[Invoice Api] Marks invoice as paid',
+    props<{id: string}>(),
+)

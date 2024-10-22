@@ -27,13 +27,13 @@
             <!-- operations -->
             <div class="operations">
                 <!-- edit -->
-                <button class="edit">Edit</button>
+                <button class="edit" (click)="editInvoice()">Edit</button>
     
                 <!-- delete -->
-                <button class="delete">Delete</button>
+                <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
     
                 <!-- mark as paid -->
-                <button class="mark-as-paid">Mark as Paid</button>
+                <button class="mark-as-paid" (click)="markAsPaid(invoice.id)">Mark as Paid</button>
             </div>
         </section>
     
