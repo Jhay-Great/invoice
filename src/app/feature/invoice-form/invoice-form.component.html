@@ -1,1 +1,30 @@
 
+<div class="container">
+    <header>
+        <h1>New Invoice</h1>
+    </header>
+    
+    
+    <form [formGroup]="invoiceForm">
+        <section>
+            <fieldset formGroupName="senderAddress">
+                <legend>Bill to</legend>
+                <div class="sender-address">
+                    <label for="address">
+                        Sender Address
+                    </label>
+                    <input type="text" formControlName="street" id="address">
+                </div>
+                <div class="city">
+                    <label for="city">City</label>
+                    <input type="text" formControlName="city" id="city">
+                </div>
+                <div class="post-code">
+                    
+                </div>
+            </fieldset>
+        </section>
+    
+    </form>
+
+</div>

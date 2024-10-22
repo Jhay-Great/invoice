@@ -21,6 +21,7 @@
 
     /* universal colors */
     --color-white: #FFF;
+    --bg-faded: #0007;
 
     --font-size-h1: 32px;
     --font-size-h2: 20px;
@@ -67,16 +68,31 @@ app-invoice-detail {
     justify-content: center;
 }
 
+/* bg similar styles */
+app-delete-modal,
+app-invoice-form {
+    background-color: var(--bg-faded);
+}
+
 /* delete modal */
 app-delete-modal {
     width: 100%;
     height: 100%;
-    background-color: #0007;
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
     inset: 0;
+}
+
+/* invoice form */
+app-invoice-form {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
 }
 
 /* removes router outlet tag */

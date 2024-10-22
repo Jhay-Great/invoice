@@ -10,6 +10,7 @@ import { selectAllInvoice } from '../../core/state/invoice/invoice.selector';
 import { IInvoice, IFilter } from '../../core/interfaces/invoice.interface';
 import { InvoiceItemComponent } from "../../feature/invoice-item/invoice-item.component";
 import { filterAction } from '../../core/state/invoice/invoice.actions';
+import { ApplicationService } from '../../core/services/application/application.service';
 
 
 type filterOptions = { name: string, checked: boolean };
@@ -28,7 +29,8 @@ export class InvoiceListComponent implements OnInit {
   filterOptions:IFilter = {draft: false, pending: false, paid: false};
 
   constructor (
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private appService: ApplicationService,
   ) {};
 
   ngOnInit ():void {
@@ -36,9 +38,12 @@ export class InvoiceListComponent implements OnInit {
     this.invoice$ = this.store.select(selectAllInvoice);
   }
 
+  // display new form
+  invoiceForm () {
+    this.appService.toggleFormVisibility(true);
+  }
 
   // filter functionalities
-
   // filter options
   handleFilterOptions (event:MouseEvent) {
     // checks if event occurred on the input/checkbox

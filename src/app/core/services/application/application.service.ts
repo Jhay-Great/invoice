@@ -9,6 +9,9 @@ export class ApplicationService {
   private deleteSubject = new BehaviorSubject<string | null>(this.deleteId);
   private deleteId$ = this.deleteSubject.asObservable();
 
+  private formVisibilitySubject = new BehaviorSubject<boolean>(false);
+  private isFormVisible = this.formVisibilitySubject.asObservable();
+
   constructor() { }
 
   deleteInvoice (id:string | null) {
@@ -19,6 +22,14 @@ export class ApplicationService {
 
   getDeleteItem () {
     return this.deleteId$;
+  }
+
+  toggleFormVisibility (status:boolean): void {
+    this.formVisibilitySubject.next(status);
+  }
+
+  formVisibility () {
+    return this.isFormVisible;
   }
 
 

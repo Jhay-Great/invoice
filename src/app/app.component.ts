@@ -8,18 +8,18 @@ import { DeleteModalComponent } from "./feature/delete-modal/delete-modal.compon
 import { Observable } from 'rxjs';
 import { ApplicationService } from './core/services/application/application.service';
 import { AsyncPipe } from '@angular/common';
+import { InvoiceFormComponent } from "./feature/invoice-form/invoice-form.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AsyncPipe, SidebarComponent, DeleteModalComponent],
+  imports: [RouterOutlet, AsyncPipe, SidebarComponent, DeleteModalComponent, InvoiceFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'ngrx-invoice-app';
-  // @ViewChild (DeleteModalComponent)deleteModal!:DeleteModalComponent;
-  // isActive:boolean = false;
+  isFormVisible:Observable<boolean> = this.appService.formVisibility();
   deleteId:Observable<string | null> = this.appService.getDeleteItem();
 
   constructor (
