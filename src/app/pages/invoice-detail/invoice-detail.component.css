@@ -19,3 +19,46 @@
     align-items: center;
 }
 
+/* invoice data main container */
+.invoice-data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* invoice & sender address container */
+.invoice_sender-details-container,
+.purchase-date_client-details-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.purchase-date_client-details-container {
+    gap: 7rem;
+}
+
+.purchase-date_client-details-container > div {
+    flex: 1;
+}
+.purchase-date_client-details-container > div:first-child {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+/* invoice purchase data */
+.invoice-purchase-data {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.invoice-purchase-data header,
+.invoice-purchase-data section,
+.amount-due {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
