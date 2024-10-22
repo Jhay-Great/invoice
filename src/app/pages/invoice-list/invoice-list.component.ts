@@ -16,6 +16,7 @@ import { InvoiceItemComponent } from "../../feature/invoice-item/invoice-item.co
 })
 export class InvoiceListComponent implements OnInit {
   invoice$!: Observable<IInvoice[]>;
+  dropdownIsActive:boolean = false;
 
   constructor (
     private store: Store<AppState>
@@ -24,6 +25,11 @@ export class InvoiceListComponent implements OnInit {
   ngOnInit ():void {
     // select invoice slice from store
     this.invoice$ = this.store.select(selectAllInvoice);
+  }
+
+  // toggle filter menu
+  toggleFilterDropdown () {
+    this.dropdownIsActive = !this.dropdownIsActive;
   }
 
 

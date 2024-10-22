@@ -17,13 +17,13 @@
         <section class="invoice-operations">
             <!-- filter -->
             <div class="filter-container">
-                <div class="text">
+                <button class="text" (click)="toggleFilterDropdown()">
                     <p class="filter-text">Filter by status</p>
                     <img src="../../../assets/svgs/icon-arrow-down.svg" alt="filter menu arrow icon">
-                </div>
+                </button>
 
                 <!-- dropdown menu -->
-                @if (true) {
+                @if (dropdownIsActive) {
                     <section class="filter-dropdown">
                         <div class="draft-container">
                             <input type="checkbox" name="draft" id="draft">

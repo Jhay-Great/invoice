@@ -65,4 +65,6 @@ router-outlet {
 /* default styles */
 button {
     cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
 }
