@@ -19,6 +19,28 @@
     align-items: center;
 }
 
+/* operations */
+.operations {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.operations button {
+    width: fit-content;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 50px;
+}
+
+.edit {
+    background-color: var(--primary-color-lightest);
+    background-color: var(--bg-light);
+    color: var(--primary-color-faded);
+}
+
 /* invoice data main container */
 .invoice-data-container {
     display: flex;
