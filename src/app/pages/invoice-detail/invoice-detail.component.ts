@@ -7,6 +7,7 @@ import { selectInvoiceById } from '../../core/state/invoice/invoice.selector';
 import { IInvoice } from '../../core/interfaces/invoice.interface';
 import { AsyncPipe, DatePipe, CurrencyPipe } from '@angular/common';
 import { deleteInvoice, markInvoiceAsPaid } from '../../core/state/invoice/invoice.actions';
+import { ApplicationService } from '../../core/services/application/application.service';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -24,6 +25,7 @@ export class InvoiceDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store<AppState>,
+    private appService: ApplicationService,
   ) {};
 
   ngOnInit(): void {
@@ -47,9 +49,11 @@ export class InvoiceDetailComponent implements OnInit {
   }
 
   deleteInvoice (id:string) {
-    console.log(id);
-    this.store.dispatch(deleteInvoice({id}));
-    this.router.navigate(['/']); // routes to home page after deletion;
+    this.appService.deleteInvoice(id);
+
+    // console.log(id);
+    // this.store.dispatch(deleteInvoice({id}));
+    // this.router.navigate(['/']); // routes to home page after deletion;
   }
 
   markAsPaid (id:string) {

@@ -2,8 +2,10 @@
 <app-sidebar />
 
 <!-- delete modal -->
-@if (false) {
-    <app-delete-modal />
+@if ( deleteId | async ) {
+    <app-delete-modal 
+        [deleteId]='deleteId | async'
+    />
 }
 
 <router-outlet />
