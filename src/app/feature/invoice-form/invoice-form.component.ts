@@ -59,6 +59,35 @@ export class InvoiceFormComponent implements OnInit {
     // this.appService.toggleFormVisibility(false);
   }
 
+  saveAsDraft () {
+    const formValue = this.invoiceForm.value;
+    console.log(formValue);
+
+    
+    // handle valid data and dispatch action
+    const { 
+      clientAddress: {clientEmail, clientName, street, city, postCode, country },
+       senderAddress,
+       createdAt,
+      } = formValue;
+
+    const data = {
+      id: this.appService.generateId(),
+      senderAddress,
+      clientEmail,
+      clientName,
+      createdAt: this.formatDate(createdAt),
+      clientAddress: {street, city, postCode, country},
+      status: 'draft',
+      ...formValue,
+    }
+    console.log(data);
+    this.store.dispatch(createInvoice({invoiceData: data}))
+
+    // hides and resets form
+    this.hideForm();
+  }
+
 
   get items () {
     return this.invoiceForm.get('items') as FormArray;
@@ -107,8 +136,8 @@ export class InvoiceFormComponent implements OnInit {
     console.log(data);
     this.store.dispatch(createInvoice({invoiceData: data}))
 
-    // resets form
-    this.reset();
+    // resets and hides form
+    this.hideForm();
   }
 
   reset () {
