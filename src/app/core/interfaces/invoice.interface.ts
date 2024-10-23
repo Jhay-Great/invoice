@@ -43,4 +43,9 @@ export interface IInvoiceState {
 // filter interface
 export interface IFilter {
     [key:string]: boolean; //index signature
-  }
+}
+
+export interface IPaymentDue {
+    name: string;
+    value: string;
+}

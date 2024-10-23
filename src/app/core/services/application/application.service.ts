@@ -29,8 +29,6 @@ export class ApplicationService {
   toggleFormVisibility (status:boolean): void {
     this.isFormVisible = status;
     this.formVisibilitySubject.next(this.isFormVisible);
-    console.log(this.isFormVisible)
-
   }
 
   formVisibility () {

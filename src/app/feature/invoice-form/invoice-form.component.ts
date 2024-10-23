@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationService } from '../../core/services/application/application.service';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import { IPaymentDue } from '../../core/interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
-  imports: [ ReactiveFormsModule, ],
+  imports: [ ReactiveFormsModule, DropdownModule, CalendarModule],
   templateUrl: './invoice-form.component.html',
   styleUrl: './invoice-form.component.css'
 })
 export class InvoiceFormComponent implements OnInit {
   invoiceForm!:FormGroup;
+  paymentDueOptions:IPaymentDue[] = [
+    {name: 'Net 1 Day', value: '1'},
+    {name: 'Net 7 Days', value: '7'},
+    {name: 'Net 14 Days', value: '14'},
+    {name: 'Net 30 Days', value: '30'},
+  ]
 
   constructor (
     private fb:FormBuilder,
@@ -42,8 +51,8 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   discard () {
-    this.appService.toggleFormVisibility(false);
-    console.log('clicked...')
+    this.hideForm();
+    // this.appService.toggleFormVisibility(false);
   }
 
 
@@ -82,6 +91,11 @@ export class InvoiceFormComponent implements OnInit {
 
   reset () {
     this.invoiceForm.reset();
+  }
+
+  hideForm () {
+    this.appService.toggleFormVisibility(false);
+    this.reset();
   }
 
 }

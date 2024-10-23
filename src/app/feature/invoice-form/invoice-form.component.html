@@ -70,10 +70,20 @@
             <div class="created-at">
                 <label for="created-at">Invoice Date</label>
                 <!-- primeng -->
+                <p-calendar formControlName="createdAt"
+                [iconDisplay]="'input'" 
+                [showIcon]="true" 
+                inputId="icondisplay" 
+                 />
             </div>
             <div class="payment-date">
                 <label for="payment-due"></label>
                 <!-- primeng -->
+                <p-dropdown 
+                formControlName="paymentDue" 
+                [options]="paymentDueOptions"
+                optionLabel="name"
+                placeholder="Select a payment due date" />
             </div>
             <div class="description">
                 <label for="description">Project description</label>
