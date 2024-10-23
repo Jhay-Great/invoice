@@ -99,6 +99,17 @@ nav {
 
 .empty {
     pointer-events: none;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding: 3rem 0 0 0;
+}
+.empty span {
+    font-weight: bold;
 }
 
 /* invoice container */
