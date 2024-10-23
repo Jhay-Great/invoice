@@ -43,7 +43,7 @@
             <section class="invoice_sender-details-container">
                 <div class="invoice-data">
                     <p class="invoice-id">
-                        #{{ invoice.id }}
+                        <span>#</span>{{ invoice.id }}
                     </p>
                     <p class="description">
                         {{ invoice.description}}
@@ -66,14 +66,14 @@
                     <div class="purchase-dates">
                         <div class="purchase-container">
                             <p class="title">Invoice Date</p>
-                            <p>
+                            <p class="dark-highlight">
                                 {{ invoice.createdAt | date:'dd MMM yyyy'}}
                             </p>
                         </div>
     
                         <div class="payment-container">
                             <p class="title">Payment Date</p>
-                            <p>
+                            <p class="dark-highlight">
                                 {{ invoice.paymentDue | date:'dd MMM yyyy'}}
                             </p>
                         </div>
@@ -81,7 +81,7 @@
     
                     <div class="client-data">
                         <p class="title">Bill to</p>
-                        <p class="data">{{ invoice.clientName }}</p>
+                        <p class="data dark-highlight">{{ invoice.clientName }}</p>
                         <div class="client-address">
                             <p class="street">{{ invoice.clientAddress.street }}</p>
                             <p class="city">{{ invoice.clientAddress.city }}</p>
@@ -95,7 +95,7 @@
                 <!-- client email address -->
                 <div class="client-email-containe">
                     <p class="title">Send to</p>
-                    <p class="data">
+                    <p class="data dark-highlight">
                         {{ invoice.clientEmail }}
                     </p>
                 </div>
@@ -104,25 +104,31 @@
     
             <section class="invoice-purchase-data">
                 <!-- Item name, qty price total -->
-                <header>
-                    <p>Item Name</p>
-                    <p>QTY.</p>
-                    <p>Price</p>
-                    <p>Total</p>
-                </header>
-                @for (item of invoice.items; track $index) {
-                    <section>
-                        <p class="name dark-bold">{{ item.name }}</p>
-                        <p class="qty primary-faded-bold">{{ item.quantity }}</p>
-                        <p class="unit-price primary-faded-bold">{{ item.price | currency:'GBP' }}</p>
-                        <p class="total-price dark-bold">{{ item.total | currency:'GBP' }}</p>
+                <div class="item-purchase-data-container">
+                    <header>
+                        <p class="name-header">Item Name</p>
+                        <p class="qty-header">QTY.</p>
+                        <p class="unit-price-header">Price</p>
+                        <p class="total-price-header">Total</p>
+                    </header>
+                    <section class="items-container">
+                        @for (item of invoice.items; track $index) {
+                            <div>
+                                <p class="name dark bold">{{ item.name }}</p>
+                                <p class="qty primary-faded bold">{{ item.quantity }}</p>
+                                <p class="unit-price primary-faded bold">{{ item.price | currency:'GBP' }}</p>
+                                <p class="total-price dark bold">{{ item.total | currency:'GBP' }}</p>
+                            </div>
+        
+                        }
+    
                     </section>
 
-                }
+                </div>
     
                 <div class="amount-due">
                     <p>Amount Due</p>
-                    <p class="total-cummulation-price">{{ invoice.total | currency:'GBP'}}</p>
+                    <p class="total-cumulation-price">{{ invoice.total | currency:'GBP'}}</p>
                 </div>
     
             </section>
