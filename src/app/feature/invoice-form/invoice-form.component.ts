@@ -4,7 +4,7 @@ import { ApplicationService } from '../../core/services/application/application.
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { IInvoice, IPaymentDue } from '../../core/interfaces/invoice.interface';
-import { createInvoice } from '../../core/state/invoice/invoice.actions';
+import { createInvoice, updateInvoice } from '../../core/state/invoice/invoice.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../core/state/state.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -172,6 +172,38 @@ export class InvoiceFormComponent implements OnInit {
 
   removeItem (index:number):void {
     this.items.removeAt(index);
+  }
+
+  saveChanges () {
+    // handle invalidity
+    const formData = this.invoiceForm;
+    if (formData.invalid) {
+      console.log(formData.value);
+      return;
+    }
+
+    // handle valid data and dispatch action
+    const { 
+      clientAddress: {clientEmail, clientName, street, city, postCode, country },
+       senderAddress,
+       createdAt,
+      } = formData.value;
+
+    const data = {
+      id: this.invoiceId,
+      senderAddress,
+      clientEmail,
+      clientName,
+      createdAt: this.formatDate(createdAt),
+      clientAddress: {street, city, postCode, country},
+      status: 'pending',
+      ...formData.value,
+    }
+    console.log('update: ', data);
+    this.store.dispatch(updateInvoice({invoiceData: data}))
+
+    // resets and hides form
+    this.hideForm();
   }
 
   onSubmit () {

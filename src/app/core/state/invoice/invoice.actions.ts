@@ -22,6 +22,10 @@ export const createInvoice = createAction(
     '[Invoice Api] Creates invoice',
     props<{invoiceData: IInvoice}>()
 )
+export const updateInvoice = createAction(
+    '[Invoice Api] Updates invoice',
+    props<{invoiceData: IInvoice}>()
+)
 
 export const deleteInvoice = createAction(
     '[Invoice Api] Deletes invoice',

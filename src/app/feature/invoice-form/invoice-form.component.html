@@ -1,11 +1,11 @@
 
 <div class="container">
     <header>
-        <h1>New Invoice</h1>
+        <h1>{{ invoiceId ? 'Edit ' + invoiceId : 'New Invoice' }}</h1>
     </header>
     
     
-    <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="invoiceForm" (ngSubmit)="invoiceId ? saveChanges() : onSubmit()">
         <section>
             <fieldset formGroupName="senderAddress">
                 <legend>Bill From</legend>
@@ -117,11 +117,22 @@
             <button type="button" (click)="addItems()">+ Add New Item</button>
         </section>
 
-        <section class="btns">
-            <button type="button" class="discard" (click)="discard()">Discard</button>
-            <button type="button" class="save-as-draft" (click)="saveAsDraft()">Save as Draft</button>
-            <button type="submit" class="save_send">Save & Send</button>
-        </section>
+        @if (invoiceId) {
+            <section class="btns">
+                <button type="button" class="discard" (click)="discard()">Cancel</button>
+                
+                <button type="submit" class="save_send">Save Changes</button>
+            </section>
+
+        }@else {
+            <section class="btns">
+                <button type="button" class="discard" (click)="discard()">Discard</button>
+                <button type="button" class="save-as-draft" (click)="saveAsDraft()">Save as Draft</button>
+                <button type="submit" class="save_send">Save & Send</button>
+            </section>
+
+        }
+
     
     </form>
 

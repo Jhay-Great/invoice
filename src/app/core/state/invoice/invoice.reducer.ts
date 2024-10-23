@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { createInvoice, deleteInvoice, filterAction, loadInvoice, loadInvoiceFail, loadInvoiceSuccess, markInvoiceAsPaid } from "./invoice.actions";
+import { createInvoice, deleteInvoice, filterAction, loadInvoice, loadInvoiceFail, loadInvoiceSuccess, markInvoiceAsPaid, updateInvoice } from "./invoice.actions";
 import { IInvoiceState } from "../../interfaces/invoice.interface";
 
 // initial data
@@ -20,6 +20,15 @@ export const invoiceReducer = createReducer(
         return {
             ...state,
             invoice: [invoiceData, ...state.invoice],
+        }
+    }),
+    on(updateInvoice, (state, { invoiceData }) => {
+        const invoice = state.invoice.filter(invoice => invoice.id !== invoiceData.id);
+        console.log('logging invoice in update reducer: ', invoice);
+        
+        return {
+            ...state,
+            invoice: [invoiceData, ...invoice],
         }
     }),
     on(deleteInvoice, (state, { id }) => {
