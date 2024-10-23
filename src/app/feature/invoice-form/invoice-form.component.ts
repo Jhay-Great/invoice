@@ -259,10 +259,6 @@ export class InvoiceFormComponent implements OnInit {
     const year = date.getFullYear().toString().padStart(2, '0');
 
     const formattedDate = `${year}-${month}-${day}`;
-
-    // console.log('in format date fn: ', dateString);
-    // console.log('in format date fn: ', date);
-    // console.log('in format date fn: ', formattedDate);
     
     return formattedDate;
   }
