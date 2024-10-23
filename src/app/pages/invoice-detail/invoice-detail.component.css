@@ -31,7 +31,7 @@
 .operations button {
     width: fit-content;
     height: 100%;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 50px;
 }
 

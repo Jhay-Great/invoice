@@ -21,10 +21,10 @@ import { selectInvoiceById } from '../../core/state/invoice/invoice.selector';
 export class InvoiceFormComponent implements OnInit {
   invoiceForm!:FormGroup;
   paymentDueOptions:IPaymentDue[] = [
-    {name: 'Net 1 Day', value: '1'},
-    {name: 'Net 7 Days', value: '7'},
-    {name: 'Net 14 Days', value: '14'},
-    {name: 'Net 30 Days', value: '30'},
+    {name: 'Net 1 Day', value: 1},
+    {name: 'Net 7 Days', value: 7},
+    {name: 'Net 14 Days', value: 14},
+    {name: 'Net 30 Days', value: 30},
   ]
   invoiceId:string | null = null;
 
@@ -37,6 +37,7 @@ export class InvoiceFormComponent implements OnInit {
 
   ngOnInit(): void {
     // getting id from url
+    // this.calcPaymentDueDate('23-03-21')
 
     this.appService.getInvoiceId().pipe(
       take(1),
@@ -186,18 +187,20 @@ export class InvoiceFormComponent implements OnInit {
     const { 
       clientAddress: {clientEmail, clientName, street, city, postCode, country },
        senderAddress,
+       paymentDue,
        createdAt,
       } = formData.value;
 
     const data = {
+      ...formData.value,
       id: this.invoiceId,
       senderAddress,
       clientEmail,
       clientName,
+      paymentDue: this.calcPaymentDueDate(createdAt, paymentDue),
       createdAt: this.formatDate(createdAt),
       clientAddress: {street, city, postCode, country},
       status: 'pending',
-      ...formData.value,
     }
     console.log('update: ', data);
     this.store.dispatch(updateInvoice({invoiceData: data}))
@@ -218,18 +221,20 @@ export class InvoiceFormComponent implements OnInit {
     const { 
       clientAddress: {clientEmail, clientName, street, city, postCode, country },
        senderAddress,
+       paymentDue,
        createdAt,
       } = formData.value;
 
     const data = {
+      ...formData.value,
       id: this.appService.generateId(),
       senderAddress,
       clientEmail,
       clientName,
-      createdAt: this.formatDate(createdAt),
       clientAddress: {street, city, postCode, country},
       status: 'pending',
-      ...formData.value,
+      createdAt: this.formatDate(createdAt),
+      paymentDue: this.calcPaymentDueDate(createdAt, paymentDue.value),
     }
     console.log(data);
     this.store.dispatch(createInvoice({invoiceData: data}))
@@ -253,9 +258,30 @@ export class InvoiceFormComponent implements OnInit {
     const day = date.getDate().toString().padStart(2, '0');
     const year = date.getFullYear().toString().padStart(2, '0');
 
-    const formattedDate = `${day}/${month}/${year}`;
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // console.log('in format date fn: ', dateString);
+    // console.log('in format date fn: ', date);
+    // console.log('in format date fn: ', formattedDate);
     
     return formattedDate;
+  }
+
+  calcPaymentDueDate (dateString:string, dueIn:number) {
+    console.log(dateString, dueIn);
+    const date = new Date(dateString);
+    const day = date.getDate();
+
+    // console.log(date, day);
+    
+    const currentDate = date.setDate(day + dueIn);
+    // console.log('current date: ', currentDate);
+    console.log('logging new date: ', date.toString());
+    const formattedDate = this.formatDate(date.toString());
+    // return date;  
+    console.log(formattedDate);
+    return formattedDate;  
+
   }
 
 }

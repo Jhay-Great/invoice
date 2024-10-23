@@ -47,5 +47,5 @@ export interface IFilter {
 
 export interface IPaymentDue {
     name: string;
-    value: string;
+    value: number;
 }
