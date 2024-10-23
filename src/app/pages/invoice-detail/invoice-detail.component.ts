@@ -20,6 +20,7 @@ export class InvoiceDetailComponent implements OnInit {
   invoiceSubscription = Subscription;
   invoiceData$!:Observable<IInvoice[]>
   errorMessage: string | null = null;
+  invoiceId!: string;
 
   constructor (
     private activatedRoute: ActivatedRoute,
@@ -33,6 +34,7 @@ export class InvoiceDetailComponent implements OnInit {
       take(1),
       map(params => {
         const id = params['id'];
+        this.invoiceId = id;
         console.log(id);
         return id;
       })
@@ -44,8 +46,8 @@ export class InvoiceDetailComponent implements OnInit {
   );
   }
 
-  editInvoice () {
-    console.log('under construction');
+  editInvoice (id:string) {
+    this.appService.toggleFormVisibility(true, id);
   }
 
   deleteInvoice (id:string) {

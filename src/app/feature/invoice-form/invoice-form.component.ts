@@ -3,10 +3,13 @@ import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } fr
 import { ApplicationService } from '../../core/services/application/application.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
-import { IPaymentDue } from '../../core/interfaces/invoice.interface';
+import { IInvoice, IPaymentDue } from '../../core/interfaces/invoice.interface';
 import { createInvoice } from '../../core/state/invoice/invoice.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../core/state/state.interface';
+import { ActivatedRoute } from '@angular/router';
+import { map, take, tap } from 'rxjs';
+import { selectInvoiceById } from '../../core/state/invoice/invoice.selector';
 
 @Component({
   selector: 'app-invoice-form',
@@ -23,35 +26,98 @@ export class InvoiceFormComponent implements OnInit {
     {name: 'Net 14 Days', value: '14'},
     {name: 'Net 30 Days', value: '30'},
   ]
+  invoiceId:string | null = null;
 
   constructor (
     private fb:FormBuilder,
     private appService: ApplicationService,
     private store: Store<AppState>,
+    private activatedRoute: ActivatedRoute,
   ) {};
 
   ngOnInit(): void {
-    // builds form
-    this.invoiceForm = this.fb.group({
+    // getting id from url
+
+    this.appService.getInvoiceId().pipe(
+      take(1),
+    ).subscribe(invoiceId => this.invoiceId = invoiceId);
+
+    if (this.invoiceId) {
+      this.store.select(selectInvoiceById(this.invoiceId)).subscribe(
+        value => {
+          this.populateForm(value)
+        }
+      )
+    } else {
+      // builds form
+      this.invoiceForm = this.fb.group({
+        senderAddress: this.fb.group({
+          street: ['', Validators.required],
+          city: ['', Validators.required],
+          postCode: ['', Validators.required],
+          country: ['', Validators.required],
+        }),
+        clientAddress: this.fb.group({
+          street: ['', Validators.required],
+          city: ['', Validators.required],
+          postCode: ['', Validators.required],
+          country: ['', Validators.required],
+          clientName: ['', Validators.required],
+          clientEmail: ['', [Validators.required, Validators.email]],
+        }),
+        createdAt: ['', Validators.required],
+        paymentDue: ['', Validators.required],
+        description: ['', Validators.required],
+        items: this.fb.array([]),
+      })
+
+    }
+
+
+    
+  }
+
+  populateForm ([data]:IInvoice[]) {
+        this.invoiceForm = this.fb.group({
       senderAddress: this.fb.group({
-        street: ['', Validators.required],
-        city: ['', Validators.required],
-        postCode: ['', Validators.required],
-        country: ['', Validators.required],
+        street: [data.senderAddress.street, Validators.required],
+        city: [data.senderAddress.city, Validators.required],
+        postCode: [data.senderAddress.postCode, Validators.required],
+        country: [data.senderAddress.country, Validators.required],
       }),
       clientAddress: this.fb.group({
-        street: ['', Validators.required],
-        city: ['', Validators.required],
-        postCode: ['', Validators.required],
-        country: ['', Validators.required],
-        clientName: ['', Validators.required],
-        clientEmail: ['', [Validators.required, Validators.email]],
+        street: [data.clientAddress.street, Validators.required],
+        city: [data.clientAddress.city, Validators.required],
+        postCode: [data.clientAddress.postCode, Validators.required],
+        country: [data.clientAddress.country, Validators.required],
+        clientName: [data.clientName, Validators.required],
+        clientEmail: [data.clientEmail, [Validators.required, Validators.email]],
       }),
-      createdAt: ['', Validators.required],
-      paymentDue: ['', Validators.required],
-      description: ['', Validators.required],
+      createdAt: [data.createdAt, Validators.required],
+      paymentDue: [data.paymentDue, Validators.required],
+      description: [data.description, Validators.required],
       items: this.fb.array([]),
     })
+    //     this.invoiceForm.patchValue({
+    //   senderAddress: {
+    //     street: data.senderAddress.street,
+    //     city: data.senderAddress.city,
+    //     postCode: data.senderAddress.postCode,
+    //     country: data.senderAddress.country,
+    //   },
+    //   clientAddress: {
+    //     street: data.clientAddress.street,
+    //     city: data.clientAddress.city,
+    //     postCode: data.clientAddress.postCode,
+    //     country: data.clientAddress.country,
+    //     clientName:data.clientName,
+    //     clientEmail:data.clientEmail, 
+    //   },
+    //   createdAt: data.createdAt,
+    //   paymentDue: data.paymentDue,
+    //   description: data.description,
+    //   // items: this.fb.array([]),
+    // })
   }
 
   discard () {
@@ -130,7 +196,7 @@ export class InvoiceFormComponent implements OnInit {
       clientName,
       createdAt: this.formatDate(createdAt),
       clientAddress: {street, city, postCode, country},
-      status: 'paid',
+      status: 'pending',
       ...formData.value,
     }
     console.log(data);

@@ -14,6 +14,11 @@ export class ApplicationService {
   private formVisibilitySubject = new BehaviorSubject<boolean>(false);
   private isFormVisible$ = this.formVisibilitySubject.asObservable();
 
+  // would refractor this and the delete BS
+  private invoiceId:string | null = null;
+  private invoiceIdSubject = new BehaviorSubject<string | null>(this.deleteId);
+  private invoiceId$ = this.invoiceIdSubject.asObservable();
+
   constructor() { }
 
   deleteInvoice (id:string | null) {
@@ -26,9 +31,22 @@ export class ApplicationService {
     return this.deleteId$;
   }
 
-  toggleFormVisibility (status:boolean): void {
+  // TODO: refract this and the deleteInvoice implementation
+  setInvoiceId (id:string | null) {
+    this.invoiceId = id;
+    this.invoiceIdSubject.next(this.invoiceId);
+  }
+
+  getInvoiceId () {
+    return this.invoiceId$;
+  }
+
+  toggleFormVisibility (status:boolean, invoiceId:string | null = null): void {
     this.isFormVisible = status;
     this.formVisibilitySubject.next(this.isFormVisible);
+    
+    // sets invoice BS
+    this.setInvoiceId(invoiceId);
   }
 
   formVisibility () {
