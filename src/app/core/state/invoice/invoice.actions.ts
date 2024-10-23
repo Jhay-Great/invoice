@@ -18,6 +18,11 @@ export const filterAction = createAction(
 )
 
 // CRUD operations
+export const createInvoice = createAction(
+    '[Invoice Api] Creates invoice',
+    props<{invoiceData: IInvoice}>()
+)
+
 export const deleteInvoice = createAction(
     '[Invoice Api] Deletes invoice',
     props<{ id: string }>(),

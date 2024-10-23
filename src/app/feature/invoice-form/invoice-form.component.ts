@@ -4,6 +4,9 @@ import { ApplicationService } from '../../core/services/application/application.
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { IPaymentDue } from '../../core/interfaces/invoice.interface';
+import { createInvoice } from '../../core/state/invoice/invoice.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/state/state.interface';
 
 @Component({
   selector: 'app-invoice-form',
@@ -24,6 +27,7 @@ export class InvoiceFormComponent implements OnInit {
   constructor (
     private fb:FormBuilder,
     private appService: ApplicationService,
+    private store: Store<AppState>,
   ) {};
 
   ngOnInit(): void {
@@ -84,6 +88,24 @@ export class InvoiceFormComponent implements OnInit {
     }
 
     // handle valid data and dispatch action
+    const { 
+      clientAddress: {clientEmail, clientName, street, city, postCode, country },
+       senderAddress,
+       createdAt,
+      } = formData.value;
+
+    const data = {
+      id: this.appService.generateId(),
+      senderAddress,
+      clientEmail,
+      clientName,
+      createdAt: this.formatDate(createdAt),
+      clientAddress: {street, city, postCode, country},
+      status: 'paid',
+      ...formData.value,
+    }
+    console.log(data);
+    this.store.dispatch(createInvoice({invoiceData: data}))
 
     // resets form
     this.reset();
@@ -96,6 +118,17 @@ export class InvoiceFormComponent implements OnInit {
   hideForm () {
     this.appService.toggleFormVisibility(false);
     this.reset();
+  }
+
+  formatDate (dateString:string) {
+    const date = new Date(dateString);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear().toString().padStart(2, '0');
+
+    const formattedDate = `${day}/${month}/${year}`;
+    
+    return formattedDate;
   }
 
 }

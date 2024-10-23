@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { deleteInvoice, filterAction, loadInvoice, loadInvoiceFail, loadInvoiceSuccess, markInvoiceAsPaid } from "./invoice.actions";
+import { createInvoice, deleteInvoice, filterAction, loadInvoice, loadInvoiceFail, loadInvoiceSuccess, markInvoiceAsPaid } from "./invoice.actions";
 import { IInvoiceState } from "../../interfaces/invoice.interface";
 
 // initial data
@@ -16,6 +16,12 @@ export const invoiceReducer = createReducer(
     on(loadInvoiceSuccess, (state, {invoice}) => (console.log(invoice), {...state, invoice, loading: false})),
     on(loadInvoiceFail, (state, {error}) => ({...state, error, loading: false})),
     on(filterAction,  (state, { filter }) => ({...state, filterBy: {...filter}})),
+    on(createInvoice, (state, { invoiceData }) => {
+        return {
+            ...state,
+            invoice: [invoiceData, ...state.invoice],
+        }
+    }),
     on(deleteInvoice, (state, { id }) => {
         const data = state.invoice.filter(invoice => invoice.id !== id);
         console.log('updated invoice data after deletion: ', data);
