@@ -1,0 +1,26 @@
+.invoice-id, .amount {
+    color: var(--secondary-color-dark);
+    font-weight: bold;
+
+}
+.invoice-id span, .client-name {
+    color: var(--primary-color-faded);
+}
+.invoice-date {
+    color: var(--primary-color-lighter);
+
+}
+.client-name {
+    /* color: var(--primary-color-lightest); */
+    text-align: left;
+}
+.amount {
+    font-size: var(--font-size-h2);
+    text-align: right;
+}
+.status {
+    text-align: center;
+}
+p {
+    flex: 1;
+}
