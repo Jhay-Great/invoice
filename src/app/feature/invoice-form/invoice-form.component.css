@@ -3,7 +3,7 @@
     padding-left: 6rem;
     padding-right: 1rem;
     padding-top: 2rem;
-    width: 500px;
+    width: 530px;
     height: 100%;
     border-radius: 0 20px 20px 0;
     display: flex;
@@ -17,6 +17,9 @@ form {
     display: flex;
     flex-direction: column;
     position: relative;
+    flex: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 .fields {
     display: flex;
@@ -32,8 +35,9 @@ fieldset {
 }
 legend {
     color: var(--primary-color);
-    font-size: var(--font-size-h4);
+    font-size: var(--font-size-h2);
     margin-bottom: 1rem;
+    /* grid-column: 1 / -1; */
 }
 section div {
     display: flex;
@@ -41,16 +45,160 @@ section div {
     gap: .5rem;
     margin-bottom: 1rem;
 }
+/* .senders-address-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+} */
+.sender-address {
+    grid-column: 1 / -1;
+    /* grid-row: 2; */
+}
+/* similar styles */
+input, label {
+    font-size: var(--font-size-h3); 
+}
 input {
-    border: 1px solid var(--secondary-color-dark);
+    color: var(--secondary-color-dark);
+    font-weight: bold;
+    border: 1px solid var(--primary-color-lightest);
     border-radius: 4px;
+    padding: 0rem 1rem;
+    height: 50px;
+    caret-color: var(--primary-color);
+    outline: none;
+}
+input:active, input:focus {
+    border-color: var(--primary-color);
+}
+label {
+    color: var(--primary-color-lighter);
+}
+
+/* about invoice */
+.about-invoice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+::ng-deep div#pn_id_2,
+::ng-deep .p-calendar .p-inputtext {
+    width: 100%;
     padding: 1rem;
+}
+::ng-deep .p-dropdown:not(.p-disabled):hover,
+::ng-deep .p-inputtext:enabled:hover {
+    border-color:  var(--primary-color);
+}
+::ng-deep .p-dropdown:not(.p-disabled).p-focus,
+::ng-deep .p-calendar:not(.p-calendar-disabled).p-focus > .p-inputtext {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: none;
+    border-color: var(--primary-color);
+}
+::ng-deep .p-datepicker-icon  {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5rem;
+    transform: translateY(0%);
+}
+.description {
+    grid-column: 1 / -1;
+}
+
+
+/* items styles */
+.items h2 {
+    color: var(--secondary-color);
+    font-size: var(--font-size-h2);
+    margin-bottom: 1rem;
+
+}
+.items .item-headers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primary-color-lighter);
+}
+.item-headers p:first-child {
+    flex: 2;
+}
+.item-headers p:nth-child(3),
+.item-headers p:last-child {
+    flex: 1;
+}
+.items .item-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.item-list input {
+    width: 100%;
+}
+.name-data { flex: 3}
+.qty-data { flex: 1}
+.price-data { flex: 2}
+.total-price-data { flex: 2}
+.remove-item:hover path {
+    fill: red;
+    transition: all 300ms ease-in;
+}
+
+.add-new-item {
+    width: 100%;
+    height: fit-content;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    text-align: center;
+    color: var(--primary-color-lighter);
+    background-color: var(--bg-light);
+    margin-bottom: 1rem;
+    font-weight: bold;
+    transition: all 500ms ease-in-out;
+}
+.add-new-item:hover {
+    background-color: var(--primary-color-lightest);
+
 }
 
 /* btns */
 .btns {
     width: 100%;
     height: fit-content;
-    flex: 1;
+    /* flex: 1; */
     padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 10px var(--shadow);
+}
+.edit-form-btns {
+    justify-content: flex-end;
+}
+.btns button {
+    width: fit-content;
+    /* height: 100%; */
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+}
+.discard {
+    background-color: var(--bg-light);
+    color: var(--primary-color-faded);
+}
+.save-as-draft {
+    background-color: var(--secondary-color-dark);
+    color: var(--primary-color-faded);
+}
+.save_send {
+    background-color: var(--primary-color);
+    color: var(--color-white);
 }

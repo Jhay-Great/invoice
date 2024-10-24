@@ -8,7 +8,7 @@
     <form [formGroup]="invoiceForm" (ngSubmit)="invoiceId ? saveChanges() : onSubmit()">
         <div class="fields">
             <section>
-                <fieldset formGroupName="senderAddress">
+                <fieldset class="senders-address-container" formGroupName="senderAddress">
                     <legend>Bill From</legend>
                     <div class="sender-address">
                         <label for="street-address">
@@ -67,7 +67,7 @@
                 </fieldset>
             </section>
     
-            <section>
+            <section class="about-invoice">
                 <div class="created-at">
                     <label for="created-at">Invoice Date</label>
                     <p-calendar formControlName="createdAt"
@@ -77,12 +77,12 @@
                      />
                 </div>
                 <div class="payment-date">
-                    <label for="payment-due"></label>
+                    <label for="payment-due">Payment Terms</label>
                     <p-dropdown 
                     formControlName="paymentDue" 
                     [options]="paymentDueOptions"
                     optionLabel="name"
-                    placeholder="Select a payment due date" />
+                    placeholder="Due date" />
                 </div>
                 <div class="description">
                     <label for="description">Project description</label>
@@ -102,23 +102,22 @@
                 <div class="item-list-container" formArrayName="items">
                     @for (item of items.controls; track $index) {
                         <div class="item-list" [formGroupName]="$index">
-                            <input type="text" formControlName="name">
-                            <input type="number" formControlName="quantity">
-                            <input type="number" formControlName="price">
-                            <input type="number" formControlName="total">
+                            <input class="name-data" type="text" formControlName="name">
+                            <input class="qty-data" type="number" formControlName="quantity">
+                            <input class="price-data" type="number" formControlName="price">
+                            <input class="total-price-data" type="number" formControlName="total">
                             <button class="remove-item" (click)="removeItem($index)">
-                                <img src="../../../assets/svgs/icon-delete.svg" alt="delete svg icon for delete items in form">
-    
+                                <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z" fill="#888EB0" fill-rule="nonzero"/></svg>
                             </button>
                         </div>
                     }
                 </div>
-                <button type="button" (click)="addItems()">+ Add New Item</button>
+                <button class="add-new-item" type="button" (click)="addItems()">+ Add New Item</button>
             </section>
         </div>
 
         @if (invoiceId) {
-            <section class="btns">
+            <section class="btns edit-form-btns">
                 <button type="button" class="discard" (click)="discard()">Cancel</button>
                 
                 <button type="submit" class="save_send">Save Changes</button>
